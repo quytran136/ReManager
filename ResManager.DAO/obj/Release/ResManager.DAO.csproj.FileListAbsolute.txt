@@ -1,0 +1,14 @@
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\ResManager.DAO.dll.config
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\ResManager.DAO.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\ResManager.DAO.pdb
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\EntityFramework.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\EntityFramework.SqlServer.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\ResManager.Common.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\ResManager.Common.pdb
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\EntityFramework.xml
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\bin\Release\EntityFramework.SqlServer.xml
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\obj\Release\ResManager.DAO.csprojAssemblyReference.cache
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\obj\Release\ResManager.DAO.csproj.CoreCompileInputs.cache
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\obj\Release\ResManager.DAO.csproj.CopyComplete
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\obj\Release\ResManager.DAO.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\obj\Release\ResManager.DAO.pdb

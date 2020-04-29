@@ -1,0 +1,1262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuanLyNhaHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="00_BanAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenBanAn" Type="nvarchar" MaxLength="64" />
+          <Property Name="SoBanAn" Type="int" />
+          <Property Name="SoGhe" Type="int" />
+          <Property Name="IdLoaiBan" Type="int" />
+          <Property Name="IdLoaiKhuVuc" Type="int" />
+          <Property Name="IdTrangThai" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="00_KhuVucAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiKhuVuc" Type="nvarchar" MaxLength="128" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="IdTrangThai" Type="int" />
+        </EntityType>
+        <EntityType Name="00_LoaiBan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiBan" Type="nvarchar" MaxLength="128" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="IdTrangThai" Type="int" />
+        </EntityType>
+        <EntityType Name="00_NhaHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TenNhaHang" Type="nvarchar" MaxLength="128" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="01_CongThuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GioiThieu" Type="nvarchar" MaxLength="500" />
+          <Property Name="ChiTietMon" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="SuaLanCuoi" Type="datetime" />
+          <Property Name="IdMon" Type="int" />
+        </EntityType>
+        <EntityType Name="01_LoaiThucDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="01_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenMenu" Type="nvarchar" MaxLength="128" />
+          <Property Name="SoLuongMon" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="SuaLanCuoi" Type="datetime" />
+          <Property Name="IdLoaiThucDon" Type="int" />
+        </EntityType>
+        <EntityType Name="01_Mon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenMon" Type="nvarchar" MaxLength="128" />
+          <Property Name="IdTrangThai" Type="int" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="16" />
+          <Property Name="DonGia" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="01_NhomMon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhomMon" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="01_SapXepMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMenu" Type="int" />
+          <Property Name="IdMon" Type="int" />
+        </EntityType>
+        <EntityType Name="01_SapXepNhom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdNhomMon" Type="int" />
+          <Property Name="IdMon" Type="int" />
+          <Property Name="ThongTinThem" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="02_ChiTietHoaDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHoaDon" Type="int" />
+          <Property Name="IdMonAn" Type="int" />
+          <Property Name="DonGia" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="50" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="02_HoaDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaHoaDon" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdBan" Type="int" />
+          <Property Name="PhaiThu" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ThucThu" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ChoNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TrietKhau" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MaVoucher" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="02_PhucVu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMon" Type="int" />
+          <Property Name="IdBan" Type="int" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="DonGia" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ThanhToan" Type="bit" />
+          <Property Name="NgayTao" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Root_DonVi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiDonVi" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="Root_NhomQuyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhom" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Root_NhomTrangThai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTrangThai" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Root_QuanLyTrangThai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTrangThai" Type="int" />
+          <Property Name="IdNhomTrangThai" Type="int" />
+        </EntityType>
+        <EntityType Name="Root_Quyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenQuyen" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Root_TrangThai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTrangThai" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_00_BanAn_00_LoaiBan">
+          <End Role="00_LoaiBan" Type="Self.00_LoaiBan" Multiplicity="0..1" />
+          <End Role="00_BanAn" Type="Self.00_BanAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="00_LoaiBan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="00_BanAn">
+              <PropertyRef Name="IdLoaiBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_00_BanAn_00_LoaiKhuVuc">
+          <End Role="00_KhuVucAn" Type="Self.00_KhuVucAn" Multiplicity="0..1" />
+          <End Role="00_BanAn" Type="Self.00_BanAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="00_KhuVucAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="00_BanAn">
+              <PropertyRef Name="IdLoaiKhuVuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_00_BanAn_Root_QuanLyTrangThai">
+          <End Role="Root_QuanLyTrangThai" Type="Self.Root_QuanLyTrangThai" Multiplicity="0..1" />
+          <End Role="00_BanAn" Type="Self.00_BanAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="00_BanAn">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_00_KhuVucAn_Root_QuanLyTrangThai">
+          <End Role="Root_QuanLyTrangThai" Type="Self.Root_QuanLyTrangThai" Multiplicity="0..1" />
+          <End Role="00_KhuVucAn" Type="Self.00_KhuVucAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="00_KhuVucAn">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_00_LoaiBan_Root_QuanLyTrangThai1">
+          <End Role="Root_QuanLyTrangThai" Type="Self.Root_QuanLyTrangThai" Multiplicity="0..1" />
+          <End Role="00_LoaiBan" Type="Self.00_LoaiBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="00_LoaiBan">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_CongThuc_01_Mon">
+          <End Role="01_Mon" Type="Self.01_Mon" Multiplicity="0..1" />
+          <End Role="01_CongThuc" Type="Self.01_CongThuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="01_Mon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="01_CongThuc">
+              <PropertyRef Name="IdMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_Menu_01_LoaiThucDon">
+          <End Role="01_LoaiThucDon" Type="Self.01_LoaiThucDon" Multiplicity="0..1" />
+          <End Role="01_Menu" Type="Self.01_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="01_LoaiThucDon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="01_Menu">
+              <PropertyRef Name="IdLoaiThucDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_Mon_Root_QuanLyTrangThai1">
+          <End Role="Root_QuanLyTrangThai" Type="Self.Root_QuanLyTrangThai" Multiplicity="0..1" />
+          <End Role="01_Mon" Type="Self.01_Mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="01_Mon">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_SapXepMenu_01_Menu">
+          <End Role="01_Menu" Type="Self.01_Menu" Multiplicity="0..1" />
+          <End Role="01_SapXepMenu" Type="Self.01_SapXepMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="01_Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="01_SapXepMenu">
+              <PropertyRef Name="IdMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_SapXepMenu_01_Mon">
+          <End Role="01_Mon" Type="Self.01_Mon" Multiplicity="0..1" />
+          <End Role="01_SapXepMenu" Type="Self.01_SapXepMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="01_Mon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="01_SapXepMenu">
+              <PropertyRef Name="IdMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_SapXepNhom_01_Mon">
+          <End Role="01_Mon" Type="Self.01_Mon" Multiplicity="0..1" />
+          <End Role="01_SapXepNhom" Type="Self.01_SapXepNhom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="01_Mon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="01_SapXepNhom">
+              <PropertyRef Name="IdMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_SapXepNhom_01_NhomMon">
+          <End Role="01_NhomMon" Type="Self.01_NhomMon" Multiplicity="0..1" />
+          <End Role="01_SapXepNhom" Type="Self.01_SapXepNhom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="01_NhomMon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="01_SapXepNhom">
+              <PropertyRef Name="IdNhomMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_02_ChiTietHoaDon_02_HoaDon">
+          <End Role="02_HoaDon" Type="Self.02_HoaDon" Multiplicity="0..1" />
+          <End Role="02_ChiTietHoaDon" Type="Self.02_ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="02_HoaDon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="02_ChiTietHoaDon">
+              <PropertyRef Name="IdHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_02_PhucVu_00_BanAn">
+          <End Role="00_BanAn" Type="Self.00_BanAn" Multiplicity="0..1" />
+          <End Role="02_PhucVu" Type="Self.02_PhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="00_BanAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="02_PhucVu">
+              <PropertyRef Name="IdBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_02_PhucVu_01_Mon">
+          <End Role="01_Mon" Type="Self.01_Mon" Multiplicity="0..1" />
+          <End Role="02_PhucVu" Type="Self.02_PhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="01_Mon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="02_PhucVu">
+              <PropertyRef Name="IdMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Root_QuanLyTrangThai_Root_NhomTrangThai">
+          <End Role="Root_NhomTrangThai" Type="Self.Root_NhomTrangThai" Multiplicity="0..1" />
+          <End Role="Root_QuanLyTrangThai" Type="Self.Root_QuanLyTrangThai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_NhomTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="IdNhomTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Root_QuanLyTrangThai_Root_TrangThai">
+          <End Role="Root_TrangThai" Type="Self.Root_TrangThai" Multiplicity="0..1" />
+          <End Role="Root_QuanLyTrangThai" Type="Self.Root_QuanLyTrangThai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_TrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyNhaHangModelStoreContainer">
+          <EntitySet Name="00_BanAn" EntityType="Self.00_BanAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="00_KhuVucAn" EntityType="Self.00_KhuVucAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="00_LoaiBan" EntityType="Self.00_LoaiBan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="00_NhaHang" EntityType="Self.00_NhaHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="01_CongThuc" EntityType="Self.01_CongThuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="01_LoaiThucDon" EntityType="Self.01_LoaiThucDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="01_Menu" EntityType="Self.01_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="01_Mon" EntityType="Self.01_Mon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="01_NhomMon" EntityType="Self.01_NhomMon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="01_SapXepMenu" EntityType="Self.01_SapXepMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="01_SapXepNhom" EntityType="Self.01_SapXepNhom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="02_ChiTietHoaDon" EntityType="Self.02_ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="02_HoaDon" EntityType="Self.02_HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="02_PhucVu" EntityType="Self.02_PhucVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Root_DonVi" EntityType="Self.Root_DonVi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Root_NhomQuyen" EntityType="Self.Root_NhomQuyen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Root_NhomTrangThai" EntityType="Self.Root_NhomTrangThai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Root_QuanLyTrangThai" EntityType="Self.Root_QuanLyTrangThai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Root_Quyen" EntityType="Self.Root_Quyen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Root_TrangThai" EntityType="Self.Root_TrangThai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_00_BanAn_00_LoaiBan" Association="Self.FK_00_BanAn_00_LoaiBan">
+            <End Role="00_LoaiBan" EntitySet="00_LoaiBan" />
+            <End Role="00_BanAn" EntitySet="00_BanAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_00_BanAn_00_LoaiKhuVuc" Association="Self.FK_00_BanAn_00_LoaiKhuVuc">
+            <End Role="00_KhuVucAn" EntitySet="00_KhuVucAn" />
+            <End Role="00_BanAn" EntitySet="00_BanAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_00_BanAn_Root_QuanLyTrangThai" Association="Self.FK_00_BanAn_Root_QuanLyTrangThai">
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+            <End Role="00_BanAn" EntitySet="00_BanAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_00_KhuVucAn_Root_QuanLyTrangThai" Association="Self.FK_00_KhuVucAn_Root_QuanLyTrangThai">
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+            <End Role="00_KhuVucAn" EntitySet="00_KhuVucAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_00_LoaiBan_Root_QuanLyTrangThai1" Association="Self.FK_00_LoaiBan_Root_QuanLyTrangThai1">
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+            <End Role="00_LoaiBan" EntitySet="00_LoaiBan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_CongThuc_01_Mon" Association="Self.FK_01_CongThuc_01_Mon">
+            <End Role="01_Mon" EntitySet="01_Mon" />
+            <End Role="01_CongThuc" EntitySet="01_CongThuc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_Menu_01_LoaiThucDon" Association="Self.FK_01_Menu_01_LoaiThucDon">
+            <End Role="01_LoaiThucDon" EntitySet="01_LoaiThucDon" />
+            <End Role="01_Menu" EntitySet="01_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_Mon_Root_QuanLyTrangThai1" Association="Self.FK_01_Mon_Root_QuanLyTrangThai1">
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+            <End Role="01_Mon" EntitySet="01_Mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_SapXepMenu_01_Menu" Association="Self.FK_01_SapXepMenu_01_Menu">
+            <End Role="01_Menu" EntitySet="01_Menu" />
+            <End Role="01_SapXepMenu" EntitySet="01_SapXepMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_SapXepMenu_01_Mon" Association="Self.FK_01_SapXepMenu_01_Mon">
+            <End Role="01_Mon" EntitySet="01_Mon" />
+            <End Role="01_SapXepMenu" EntitySet="01_SapXepMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_SapXepNhom_01_Mon" Association="Self.FK_01_SapXepNhom_01_Mon">
+            <End Role="01_Mon" EntitySet="01_Mon" />
+            <End Role="01_SapXepNhom" EntitySet="01_SapXepNhom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_SapXepNhom_01_NhomMon" Association="Self.FK_01_SapXepNhom_01_NhomMon">
+            <End Role="01_NhomMon" EntitySet="01_NhomMon" />
+            <End Role="01_SapXepNhom" EntitySet="01_SapXepNhom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_02_ChiTietHoaDon_02_HoaDon" Association="Self.FK_02_ChiTietHoaDon_02_HoaDon">
+            <End Role="02_HoaDon" EntitySet="02_HoaDon" />
+            <End Role="02_ChiTietHoaDon" EntitySet="02_ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_02_PhucVu_00_BanAn" Association="Self.FK_02_PhucVu_00_BanAn">
+            <End Role="00_BanAn" EntitySet="00_BanAn" />
+            <End Role="02_PhucVu" EntitySet="02_PhucVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_02_PhucVu_01_Mon" Association="Self.FK_02_PhucVu_01_Mon">
+            <End Role="01_Mon" EntitySet="01_Mon" />
+            <End Role="02_PhucVu" EntitySet="02_PhucVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Root_QuanLyTrangThai_Root_NhomTrangThai" Association="Self.FK_Root_QuanLyTrangThai_Root_NhomTrangThai">
+            <End Role="Root_NhomTrangThai" EntitySet="Root_NhomTrangThai" />
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Root_QuanLyTrangThai_Root_TrangThai" Association="Self.FK_Root_QuanLyTrangThai_Root_TrangThai">
+            <End Role="Root_TrangThai" EntitySet="Root_TrangThai" />
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLyNhaHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QuanLyNhaHangEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C00_BanAn" EntityType="QuanLyNhaHangModel.C00_BanAn" />
+          <EntitySet Name="C00_KhuVucAn" EntityType="QuanLyNhaHangModel.C00_KhuVucAn" />
+          <EntitySet Name="C00_LoaiBan" EntityType="QuanLyNhaHangModel.C00_LoaiBan" />
+          <EntitySet Name="C00_NhaHang" EntityType="QuanLyNhaHangModel.C00_NhaHang" />
+          <EntitySet Name="C01_CongThuc" EntityType="QuanLyNhaHangModel.C01_CongThuc" />
+          <EntitySet Name="C01_LoaiThucDon" EntityType="QuanLyNhaHangModel.C01_LoaiThucDon" />
+          <EntitySet Name="C01_Menu" EntityType="QuanLyNhaHangModel.C01_Menu" />
+          <EntitySet Name="C01_Mon" EntityType="QuanLyNhaHangModel.C01_Mon" />
+          <EntitySet Name="C01_NhomMon" EntityType="QuanLyNhaHangModel.C01_NhomMon" />
+          <EntitySet Name="C01_SapXepMenu" EntityType="QuanLyNhaHangModel.C01_SapXepMenu" />
+          <EntitySet Name="C01_SapXepNhom" EntityType="QuanLyNhaHangModel.C01_SapXepNhom" />
+          <EntitySet Name="C02_ChiTietHoaDon" EntityType="QuanLyNhaHangModel.C02_ChiTietHoaDon" />
+          <EntitySet Name="C02_HoaDon" EntityType="QuanLyNhaHangModel.C02_HoaDon" />
+          <EntitySet Name="C02_PhucVu" EntityType="QuanLyNhaHangModel.C02_PhucVu" />
+          <EntitySet Name="Root_DonVi" EntityType="QuanLyNhaHangModel.Root_DonVi" />
+          <EntitySet Name="Root_NhomQuyen" EntityType="QuanLyNhaHangModel.Root_NhomQuyen" />
+          <EntitySet Name="Root_NhomTrangThai" EntityType="QuanLyNhaHangModel.Root_NhomTrangThai" />
+          <EntitySet Name="Root_QuanLyTrangThai" EntityType="QuanLyNhaHangModel.Root_QuanLyTrangThai" />
+          <EntitySet Name="Root_Quyen" EntityType="QuanLyNhaHangModel.Root_Quyen" />
+          <EntitySet Name="Root_TrangThai" EntityType="QuanLyNhaHangModel.Root_TrangThai" />
+          <EntitySet Name="sysdiagrams" EntityType="QuanLyNhaHangModel.sysdiagram" />
+          <AssociationSet Name="FK_00_BanAn_00_LoaiBan" Association="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiBan">
+            <End Role="C00_LoaiBan" EntitySet="C00_LoaiBan" />
+            <End Role="C00_BanAn" EntitySet="C00_BanAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_00_BanAn_00_LoaiKhuVuc" Association="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiKhuVuc">
+            <End Role="C00_KhuVucAn" EntitySet="C00_KhuVucAn" />
+            <End Role="C00_BanAn" EntitySet="C00_BanAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_00_BanAn_Root_QuanLyTrangThai" Association="QuanLyNhaHangModel.FK_00_BanAn_Root_QuanLyTrangThai">
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+            <End Role="C00_BanAn" EntitySet="C00_BanAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_02_PhucVu_00_BanAn" Association="QuanLyNhaHangModel.FK_02_PhucVu_00_BanAn">
+            <End Role="C00_BanAn" EntitySet="C00_BanAn" />
+            <End Role="C02_PhucVu" EntitySet="C02_PhucVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_00_KhuVucAn_Root_QuanLyTrangThai" Association="QuanLyNhaHangModel.FK_00_KhuVucAn_Root_QuanLyTrangThai">
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+            <End Role="C00_KhuVucAn" EntitySet="C00_KhuVucAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_00_LoaiBan_Root_QuanLyTrangThai1" Association="QuanLyNhaHangModel.FK_00_LoaiBan_Root_QuanLyTrangThai1">
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+            <End Role="C00_LoaiBan" EntitySet="C00_LoaiBan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_CongThuc_01_Mon" Association="QuanLyNhaHangModel.FK_01_CongThuc_01_Mon">
+            <End Role="C01_Mon" EntitySet="C01_Mon" />
+            <End Role="C01_CongThuc" EntitySet="C01_CongThuc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_Menu_01_LoaiThucDon" Association="QuanLyNhaHangModel.FK_01_Menu_01_LoaiThucDon">
+            <End Role="C01_LoaiThucDon" EntitySet="C01_LoaiThucDon" />
+            <End Role="C01_Menu" EntitySet="C01_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_SapXepMenu_01_Menu" Association="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Menu">
+            <End Role="C01_Menu" EntitySet="C01_Menu" />
+            <End Role="C01_SapXepMenu" EntitySet="C01_SapXepMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_Mon_Root_QuanLyTrangThai1" Association="QuanLyNhaHangModel.FK_01_Mon_Root_QuanLyTrangThai1">
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+            <End Role="C01_Mon" EntitySet="C01_Mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_SapXepMenu_01_Mon" Association="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Mon">
+            <End Role="C01_Mon" EntitySet="C01_Mon" />
+            <End Role="C01_SapXepMenu" EntitySet="C01_SapXepMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_SapXepNhom_01_Mon" Association="QuanLyNhaHangModel.FK_01_SapXepNhom_01_Mon">
+            <End Role="C01_Mon" EntitySet="C01_Mon" />
+            <End Role="C01_SapXepNhom" EntitySet="C01_SapXepNhom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_02_PhucVu_01_Mon" Association="QuanLyNhaHangModel.FK_02_PhucVu_01_Mon">
+            <End Role="C01_Mon" EntitySet="C01_Mon" />
+            <End Role="C02_PhucVu" EntitySet="C02_PhucVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_01_SapXepNhom_01_NhomMon" Association="QuanLyNhaHangModel.FK_01_SapXepNhom_01_NhomMon">
+            <End Role="C01_NhomMon" EntitySet="C01_NhomMon" />
+            <End Role="C01_SapXepNhom" EntitySet="C01_SapXepNhom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_02_ChiTietHoaDon_02_HoaDon" Association="QuanLyNhaHangModel.FK_02_ChiTietHoaDon_02_HoaDon">
+            <End Role="C02_HoaDon" EntitySet="C02_HoaDon" />
+            <End Role="C02_ChiTietHoaDon" EntitySet="C02_ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Root_QuanLyTrangThai_Root_NhomTrangThai" Association="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_NhomTrangThai">
+            <End Role="Root_NhomTrangThai" EntitySet="Root_NhomTrangThai" />
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Root_QuanLyTrangThai_Root_TrangThai" Association="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_TrangThai">
+            <End Role="Root_TrangThai" EntitySet="Root_TrangThai" />
+            <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C00_BanAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenBanAn" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="SoBanAn" Type="Int32" />
+          <Property Name="SoGhe" Type="Int32" />
+          <Property Name="IdLoaiBan" Type="Int32" />
+          <Property Name="IdLoaiKhuVuc" Type="Int32" />
+          <Property Name="IdTrangThai" Type="Int32" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="C00_LoaiBan" Relationship="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiBan" FromRole="C00_BanAn" ToRole="C00_LoaiBan" />
+          <NavigationProperty Name="C00_KhuVucAn" Relationship="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiKhuVuc" FromRole="C00_BanAn" ToRole="C00_KhuVucAn" />
+          <NavigationProperty Name="Root_QuanLyTrangThai" Relationship="QuanLyNhaHangModel.FK_00_BanAn_Root_QuanLyTrangThai" FromRole="C00_BanAn" ToRole="Root_QuanLyTrangThai" />
+          <NavigationProperty Name="C02_PhucVu" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_00_BanAn" FromRole="C00_BanAn" ToRole="C02_PhucVu" />
+        </EntityType>
+        <EntityType Name="C00_KhuVucAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiKhuVuc" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="IdTrangThai" Type="Int32" />
+          <NavigationProperty Name="C00_BanAn" Relationship="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiKhuVuc" FromRole="C00_KhuVucAn" ToRole="C00_BanAn" />
+          <NavigationProperty Name="Root_QuanLyTrangThai" Relationship="QuanLyNhaHangModel.FK_00_KhuVucAn_Root_QuanLyTrangThai" FromRole="C00_KhuVucAn" ToRole="Root_QuanLyTrangThai" />
+        </EntityType>
+        <EntityType Name="C00_LoaiBan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiBan" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="IdTrangThai" Type="Int32" />
+          <NavigationProperty Name="C00_BanAn" Relationship="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiBan" FromRole="C00_LoaiBan" ToRole="C00_BanAn" />
+          <NavigationProperty Name="Root_QuanLyTrangThai" Relationship="QuanLyNhaHangModel.FK_00_LoaiBan_Root_QuanLyTrangThai1" FromRole="C00_LoaiBan" ToRole="Root_QuanLyTrangThai" />
+        </EntityType>
+        <EntityType Name="C00_NhaHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TenNhaHang" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C01_CongThuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GioiThieu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ChiTietMon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="SuaLanCuoi" Type="DateTime" Precision="3" />
+          <Property Name="IdMon" Type="Int32" />
+          <NavigationProperty Name="C01_Mon" Relationship="QuanLyNhaHangModel.FK_01_CongThuc_01_Mon" FromRole="C01_CongThuc" ToRole="C01_Mon" />
+        </EntityType>
+        <EntityType Name="C01_LoaiThucDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoai" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="C01_Menu" Relationship="QuanLyNhaHangModel.FK_01_Menu_01_LoaiThucDon" FromRole="C01_LoaiThucDon" ToRole="C01_Menu" />
+        </EntityType>
+        <EntityType Name="C01_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenMenu" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuongMon" Type="Int32" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="SuaLanCuoi" Type="DateTime" Precision="3" />
+          <Property Name="IdLoaiThucDon" Type="Int32" />
+          <NavigationProperty Name="C01_LoaiThucDon" Relationship="QuanLyNhaHangModel.FK_01_Menu_01_LoaiThucDon" FromRole="C01_Menu" ToRole="C01_LoaiThucDon" />
+          <NavigationProperty Name="C01_SapXepMenu" Relationship="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Menu" FromRole="C01_Menu" ToRole="C01_SapXepMenu" />
+        </EntityType>
+        <EntityType Name="C01_Mon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenMon" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdTrangThai" Type="Int32" />
+          <Property Name="DonVi" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="C01_CongThuc" Relationship="QuanLyNhaHangModel.FK_01_CongThuc_01_Mon" FromRole="C01_Mon" ToRole="C01_CongThuc" />
+          <NavigationProperty Name="Root_QuanLyTrangThai" Relationship="QuanLyNhaHangModel.FK_01_Mon_Root_QuanLyTrangThai1" FromRole="C01_Mon" ToRole="Root_QuanLyTrangThai" />
+          <NavigationProperty Name="C01_SapXepMenu" Relationship="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Mon" FromRole="C01_Mon" ToRole="C01_SapXepMenu" />
+          <NavigationProperty Name="C01_SapXepNhom" Relationship="QuanLyNhaHangModel.FK_01_SapXepNhom_01_Mon" FromRole="C01_Mon" ToRole="C01_SapXepNhom" />
+          <NavigationProperty Name="C02_PhucVu" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_01_Mon" FromRole="C01_Mon" ToRole="C02_PhucVu" />
+        </EntityType>
+        <EntityType Name="C01_NhomMon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhomMon" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="C01_SapXepNhom" Relationship="QuanLyNhaHangModel.FK_01_SapXepNhom_01_NhomMon" FromRole="C01_NhomMon" ToRole="C01_SapXepNhom" />
+        </EntityType>
+        <EntityType Name="C01_SapXepMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMenu" Type="Int32" />
+          <Property Name="IdMon" Type="Int32" />
+          <NavigationProperty Name="C01_Menu" Relationship="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Menu" FromRole="C01_SapXepMenu" ToRole="C01_Menu" />
+          <NavigationProperty Name="C01_Mon" Relationship="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Mon" FromRole="C01_SapXepMenu" ToRole="C01_Mon" />
+        </EntityType>
+        <EntityType Name="C01_SapXepNhom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdNhomMon" Type="Int32" />
+          <Property Name="IdMon" Type="Int32" />
+          <Property Name="ThongTinThem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="C01_Mon" Relationship="QuanLyNhaHangModel.FK_01_SapXepNhom_01_Mon" FromRole="C01_SapXepNhom" ToRole="C01_Mon" />
+          <NavigationProperty Name="C01_NhomMon" Relationship="QuanLyNhaHangModel.FK_01_SapXepNhom_01_NhomMon" FromRole="C01_SapXepNhom" ToRole="C01_NhomMon" />
+        </EntityType>
+        <EntityType Name="C02_ChiTietHoaDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHoaDon" Type="Int32" />
+          <Property Name="IdMonAn" Type="Int32" />
+          <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="DonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="C02_HoaDon" Relationship="QuanLyNhaHangModel.FK_02_ChiTietHoaDon_02_HoaDon" FromRole="C02_ChiTietHoaDon" ToRole="C02_HoaDon" />
+        </EntityType>
+        <EntityType Name="C02_HoaDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaHoaDon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdBan" Type="Int32" />
+          <Property Name="PhaiThu" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ThucThu" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChoNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TrietKhau" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MaVoucher" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C02_ChiTietHoaDon" Relationship="QuanLyNhaHangModel.FK_02_ChiTietHoaDon_02_HoaDon" FromRole="C02_HoaDon" ToRole="C02_ChiTietHoaDon" />
+        </EntityType>
+        <EntityType Name="C02_PhucVu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMon" Type="Int32" />
+          <Property Name="IdBan" Type="Int32" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ThanhToan" Type="Boolean" />
+          <Property Name="NgayTao" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C00_BanAn" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_00_BanAn" FromRole="C02_PhucVu" ToRole="C00_BanAn" />
+          <NavigationProperty Name="C01_Mon" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_01_Mon" FromRole="C02_PhucVu" ToRole="C01_Mon" />
+        </EntityType>
+        <EntityType Name="Root_DonVi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiDonVi" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Root_NhomQuyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhom" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Root_NhomTrangThai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTrangThai" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Root_QuanLyTrangThai" Relationship="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_NhomTrangThai" FromRole="Root_NhomTrangThai" ToRole="Root_QuanLyTrangThai" />
+        </EntityType>
+        <EntityType Name="Root_QuanLyTrangThai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTrangThai" Type="Int32" />
+          <Property Name="IdNhomTrangThai" Type="Int32" />
+          <NavigationProperty Name="C00_BanAn" Relationship="QuanLyNhaHangModel.FK_00_BanAn_Root_QuanLyTrangThai" FromRole="Root_QuanLyTrangThai" ToRole="C00_BanAn" />
+          <NavigationProperty Name="C00_KhuVucAn" Relationship="QuanLyNhaHangModel.FK_00_KhuVucAn_Root_QuanLyTrangThai" FromRole="Root_QuanLyTrangThai" ToRole="C00_KhuVucAn" />
+          <NavigationProperty Name="C00_LoaiBan" Relationship="QuanLyNhaHangModel.FK_00_LoaiBan_Root_QuanLyTrangThai1" FromRole="Root_QuanLyTrangThai" ToRole="C00_LoaiBan" />
+          <NavigationProperty Name="C01_Mon" Relationship="QuanLyNhaHangModel.FK_01_Mon_Root_QuanLyTrangThai1" FromRole="Root_QuanLyTrangThai" ToRole="C01_Mon" />
+          <NavigationProperty Name="Root_NhomTrangThai" Relationship="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_NhomTrangThai" FromRole="Root_QuanLyTrangThai" ToRole="Root_NhomTrangThai" />
+          <NavigationProperty Name="Root_TrangThai" Relationship="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_TrangThai" FromRole="Root_QuanLyTrangThai" ToRole="Root_TrangThai" />
+        </EntityType>
+        <EntityType Name="Root_Quyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenQuyen" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Root_TrangThai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTrangThai" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Root_QuanLyTrangThai" Relationship="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_TrangThai" FromRole="Root_TrangThai" ToRole="Root_QuanLyTrangThai" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_00_BanAn_00_LoaiBan">
+          <End Type="QuanLyNhaHangModel.C00_LoaiBan" Role="C00_LoaiBan" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C00_BanAn" Role="C00_BanAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C00_LoaiBan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C00_BanAn">
+              <PropertyRef Name="IdLoaiBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_00_BanAn_00_LoaiKhuVuc">
+          <End Type="QuanLyNhaHangModel.C00_KhuVucAn" Role="C00_KhuVucAn" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C00_BanAn" Role="C00_BanAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C00_KhuVucAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C00_BanAn">
+              <PropertyRef Name="IdLoaiKhuVuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_00_BanAn_Root_QuanLyTrangThai">
+          <End Type="QuanLyNhaHangModel.Root_QuanLyTrangThai" Role="Root_QuanLyTrangThai" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C00_BanAn" Role="C00_BanAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C00_BanAn">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_02_PhucVu_00_BanAn">
+          <End Type="QuanLyNhaHangModel.C00_BanAn" Role="C00_BanAn" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C02_PhucVu" Role="C02_PhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C00_BanAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C02_PhucVu">
+              <PropertyRef Name="IdBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_00_KhuVucAn_Root_QuanLyTrangThai">
+          <End Type="QuanLyNhaHangModel.Root_QuanLyTrangThai" Role="Root_QuanLyTrangThai" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C00_KhuVucAn" Role="C00_KhuVucAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C00_KhuVucAn">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_00_LoaiBan_Root_QuanLyTrangThai1">
+          <End Type="QuanLyNhaHangModel.Root_QuanLyTrangThai" Role="Root_QuanLyTrangThai" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C00_LoaiBan" Role="C00_LoaiBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C00_LoaiBan">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_CongThuc_01_Mon">
+          <End Type="QuanLyNhaHangModel.C01_Mon" Role="C01_Mon" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C01_CongThuc" Role="C01_CongThuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C01_Mon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C01_CongThuc">
+              <PropertyRef Name="IdMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_Menu_01_LoaiThucDon">
+          <End Type="QuanLyNhaHangModel.C01_LoaiThucDon" Role="C01_LoaiThucDon" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C01_Menu" Role="C01_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C01_LoaiThucDon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C01_Menu">
+              <PropertyRef Name="IdLoaiThucDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_SapXepMenu_01_Menu">
+          <End Type="QuanLyNhaHangModel.C01_Menu" Role="C01_Menu" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C01_SapXepMenu" Role="C01_SapXepMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C01_Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C01_SapXepMenu">
+              <PropertyRef Name="IdMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_Mon_Root_QuanLyTrangThai1">
+          <End Type="QuanLyNhaHangModel.Root_QuanLyTrangThai" Role="Root_QuanLyTrangThai" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C01_Mon" Role="C01_Mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C01_Mon">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_SapXepMenu_01_Mon">
+          <End Type="QuanLyNhaHangModel.C01_Mon" Role="C01_Mon" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C01_SapXepMenu" Role="C01_SapXepMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C01_Mon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C01_SapXepMenu">
+              <PropertyRef Name="IdMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_SapXepNhom_01_Mon">
+          <End Type="QuanLyNhaHangModel.C01_Mon" Role="C01_Mon" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C01_SapXepNhom" Role="C01_SapXepNhom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C01_Mon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C01_SapXepNhom">
+              <PropertyRef Name="IdMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_02_PhucVu_01_Mon">
+          <End Type="QuanLyNhaHangModel.C01_Mon" Role="C01_Mon" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C02_PhucVu" Role="C02_PhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C01_Mon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C02_PhucVu">
+              <PropertyRef Name="IdMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_01_SapXepNhom_01_NhomMon">
+          <End Type="QuanLyNhaHangModel.C01_NhomMon" Role="C01_NhomMon" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C01_SapXepNhom" Role="C01_SapXepNhom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C01_NhomMon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C01_SapXepNhom">
+              <PropertyRef Name="IdNhomMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_02_ChiTietHoaDon_02_HoaDon">
+          <End Type="QuanLyNhaHangModel.C02_HoaDon" Role="C02_HoaDon" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.C02_ChiTietHoaDon" Role="C02_ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C02_HoaDon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="C02_ChiTietHoaDon">
+              <PropertyRef Name="IdHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Root_QuanLyTrangThai_Root_NhomTrangThai">
+          <End Type="QuanLyNhaHangModel.Root_NhomTrangThai" Role="Root_NhomTrangThai" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.Root_QuanLyTrangThai" Role="Root_QuanLyTrangThai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_NhomTrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="IdNhomTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Root_QuanLyTrangThai_Root_TrangThai">
+          <End Type="QuanLyNhaHangModel.Root_TrangThai" Role="Root_TrangThai" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.Root_QuanLyTrangThai" Role="Root_QuanLyTrangThai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Root_TrangThai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Root_QuanLyTrangThai">
+              <PropertyRef Name="IdTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLyNhaHangModelStoreContainer" CdmEntityContainer="QuanLyNhaHangEntities">
+          <EntitySetMapping Name="C00_BanAn">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C00_BanAn">
+              <MappingFragment StoreEntitySet="00_BanAn">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="IdTrangThai" ColumnName="IdTrangThai" />
+                <ScalarProperty Name="IdLoaiKhuVuc" ColumnName="IdLoaiKhuVuc" />
+                <ScalarProperty Name="IdLoaiBan" ColumnName="IdLoaiBan" />
+                <ScalarProperty Name="SoGhe" ColumnName="SoGhe" />
+                <ScalarProperty Name="SoBanAn" ColumnName="SoBanAn" />
+                <ScalarProperty Name="TenBanAn" ColumnName="TenBanAn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C00_KhuVucAn">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C00_KhuVucAn">
+              <MappingFragment StoreEntitySet="00_KhuVucAn">
+                <ScalarProperty Name="IdTrangThai" ColumnName="IdTrangThai" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TenLoaiKhuVuc" ColumnName="TenLoaiKhuVuc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C00_LoaiBan">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C00_LoaiBan">
+              <MappingFragment StoreEntitySet="00_LoaiBan">
+                <ScalarProperty Name="IdTrangThai" ColumnName="IdTrangThai" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TenLoaiBan" ColumnName="TenLoaiBan" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C00_NhaHang">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C00_NhaHang">
+              <MappingFragment StoreEntitySet="00_NhaHang">
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TenNhaHang" ColumnName="TenNhaHang" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C01_CongThuc">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C01_CongThuc">
+              <MappingFragment StoreEntitySet="01_CongThuc">
+                <ScalarProperty Name="IdMon" ColumnName="IdMon" />
+                <ScalarProperty Name="SuaLanCuoi" ColumnName="SuaLanCuoi" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="ChiTietMon" ColumnName="ChiTietMon" />
+                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C01_LoaiThucDon">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C01_LoaiThucDon">
+              <MappingFragment StoreEntitySet="01_LoaiThucDon">
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C01_Menu">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C01_Menu">
+              <MappingFragment StoreEntitySet="01_Menu">
+                <ScalarProperty Name="IdLoaiThucDon" ColumnName="IdLoaiThucDon" />
+                <ScalarProperty Name="SuaLanCuoi" ColumnName="SuaLanCuoi" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="SoLuongMon" ColumnName="SoLuongMon" />
+                <ScalarProperty Name="TenMenu" ColumnName="TenMenu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C01_Mon">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C01_Mon">
+              <MappingFragment StoreEntitySet="01_Mon">
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="IdTrangThai" ColumnName="IdTrangThai" />
+                <ScalarProperty Name="TenMon" ColumnName="TenMon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C01_NhomMon">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C01_NhomMon">
+              <MappingFragment StoreEntitySet="01_NhomMon">
+                <ScalarProperty Name="TenNhomMon" ColumnName="TenNhomMon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C01_SapXepMenu">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C01_SapXepMenu">
+              <MappingFragment StoreEntitySet="01_SapXepMenu">
+                <ScalarProperty Name="IdMon" ColumnName="IdMon" />
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C01_SapXepNhom">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C01_SapXepNhom">
+              <MappingFragment StoreEntitySet="01_SapXepNhom">
+                <ScalarProperty Name="ThongTinThem" ColumnName="ThongTinThem" />
+                <ScalarProperty Name="IdMon" ColumnName="IdMon" />
+                <ScalarProperty Name="IdNhomMon" ColumnName="IdNhomMon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C02_ChiTietHoaDon">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C02_ChiTietHoaDon">
+              <MappingFragment StoreEntitySet="02_ChiTietHoaDon">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="IdMonAn" ColumnName="IdMonAn" />
+                <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C02_HoaDon">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C02_HoaDon">
+              <MappingFragment StoreEntitySet="02_HoaDon">
+                <ScalarProperty Name="MaVoucher" ColumnName="MaVoucher" />
+                <ScalarProperty Name="TrietKhau" ColumnName="TrietKhau" />
+                <ScalarProperty Name="ChoNo" ColumnName="ChoNo" />
+                <ScalarProperty Name="ThucThu" ColumnName="ThucThu" />
+                <ScalarProperty Name="PhaiThu" ColumnName="PhaiThu" />
+                <ScalarProperty Name="IdBan" ColumnName="IdBan" />
+                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C02_PhucVu">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.C02_PhucVu">
+              <MappingFragment StoreEntitySet="02_PhucVu">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="ThanhToan" ColumnName="ThanhToan" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="IdBan" ColumnName="IdBan" />
+                <ScalarProperty Name="IdMon" ColumnName="IdMon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Root_DonVi">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.Root_DonVi">
+              <MappingFragment StoreEntitySet="Root_DonVi">
+                <ScalarProperty Name="TenLoaiDonVi" ColumnName="TenLoaiDonVi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Root_NhomQuyen">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.Root_NhomQuyen">
+              <MappingFragment StoreEntitySet="Root_NhomQuyen">
+                <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Root_NhomTrangThai">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.Root_NhomTrangThai">
+              <MappingFragment StoreEntitySet="Root_NhomTrangThai">
+                <ScalarProperty Name="TenTrangThai" ColumnName="TenTrangThai" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Root_QuanLyTrangThai">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.Root_QuanLyTrangThai">
+              <MappingFragment StoreEntitySet="Root_QuanLyTrangThai">
+                <ScalarProperty Name="IdNhomTrangThai" ColumnName="IdNhomTrangThai" />
+                <ScalarProperty Name="IdTrangThai" ColumnName="IdTrangThai" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Root_Quyen">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.Root_Quyen">
+              <MappingFragment StoreEntitySet="Root_Quyen">
+                <ScalarProperty Name="TenQuyen" ColumnName="TenQuyen" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Root_TrangThai">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.Root_TrangThai">
+              <MappingFragment StoreEntitySet="Root_TrangThai">
+                <ScalarProperty Name="TenTrangThai" ColumnName="TenTrangThai" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

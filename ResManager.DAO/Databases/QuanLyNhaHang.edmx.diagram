@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1432f0b162ed440ab7a2f61edd962476" Name="Diagram1" ZoomLevel="25">
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C00_BanAn" Width="1.5" PointX="7.5" PointY="14.875" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C00_KhuVucAn" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C00_LoaiBan" Width="1.5" PointX="5.25" PointY="18.25" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C00_NhaHang" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C01_CongThuc" Width="1.5" PointX="7.5" PointY="10.75" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C01_LoaiThucDon" Width="1.5" PointX="6" PointY="1.375" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C01_Menu" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C01_Mon" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C01_NhomMon" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C01_SapXepMenu" Width="1.5" PointX="10.5" PointY="8" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C01_SapXepNhom" Width="1.5" PointX="7.5" PointY="7" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C02_ChiTietHoaDon" Width="1.5" PointX="13" PointY="2.375" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C02_HoaDon" Width="1.5" PointX="10.75" PointY="2.25" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.C02_PhucVu" Width="1.5" PointX="9.75" PointY="11.5" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.Root_DonVi" Width="1.5" PointX="2.75" PointY="2" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.Root_NhomQuyen" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.Root_NhomTrangThai" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.Root_QuanLyTrangThai" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.Root_Quyen" Width="1.5" PointX="11.75" PointY="11" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.Root_TrangThai" Width="1.5" PointX="0.75" PointY="11.125" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.sysdiagram" Width="1.5" PointX="12.75" PointY="6" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiBan" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiKhuVuc" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_00_BanAn_Root_QuanLyTrangThai" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_02_PhucVu_00_BanAn" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_00_KhuVucAn_Root_QuanLyTrangThai" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_00_LoaiBan_Root_QuanLyTrangThai1" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_01_CongThuc_01_Mon" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_01_Menu_01_LoaiThucDon" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Menu" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_01_Mon_Root_QuanLyTrangThai1" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Mon" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_01_SapXepNhom_01_Mon" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_02_PhucVu_01_Mon" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_01_SapXepNhom_01_NhomMon" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_02_ChiTietHoaDon_02_HoaDon" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_NhomTrangThai" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_TrangThai" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

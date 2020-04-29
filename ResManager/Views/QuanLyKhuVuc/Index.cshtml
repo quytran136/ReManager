@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ResManager.DAO.WebModel.KhuVucAn>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section cssSection{
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/Scripts/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Scripts/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+}
+
+<div class="card">
+    <div class="card-header">
+        <a href="@Url.Action("Index", "BanAn")" class="btn btn-secondary btn-flat">Quay lại</a>
+        <a href="@Url.Action("AddNewAreaView", "QuanLyKhuVuc")" class="btn btn-primary btn-flat">Thêm khu vực</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Thao tác</th>
+                    <th>@Html.DisplayNameFor(model => model.TenLoaiKhuVuc)</th>
+                    <th>@Html.DisplayNameFor(model => model.NgayTao)</th>
+                    <th>@Html.DisplayNameFor(model => model.TenTrangThai)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Sửa", "EditAreaView", new { id = item.ID }, new { Class = "btn btn-secondary btn-flat" })
+                            @Html.ActionLink("Chỉ tiết", "DatailArea", new { id = item.ID }, new { Class = "btn btn-primary btn-flat" })
+                            @Html.ActionLink("Xóa", "DeleteArea", new { id = item.ID }, new { Class = "btn btn-danger btn-flat" })
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.TenLoaiKhuVuc)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NgayTao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TenTrangThai)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+@section dataSection
+{
+    <!-- DataTables -->
+    <script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <!-- \DataTables -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}
+
+

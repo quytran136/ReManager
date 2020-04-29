@@ -1,0 +1,16 @@
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\ResManager.BUS.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\ResManager.BUS.pdb
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\ResManager.Common.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\ResManager.DAO.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\EntityFramework.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\ResManager.Common.pdb
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\ResManager.DAO.pdb
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\ResManager.DAO.dll.config
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\bin\Release\EntityFramework.xml
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\obj\Release\ResManager.BUS.csprojAssemblyReference.cache
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\obj\Release\ResManager.BUS.Message.BusinessExceptionMessage.resources
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\obj\Release\ResManager.BUS.csproj.GenerateResource.cache
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\obj\Release\ResManager.BUS.csproj.CoreCompileInputs.cache
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\obj\Release\ResManager.BUS.csproj.CopyComplete
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\obj\Release\ResManager.BUS.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.BUS\obj\Release\ResManager.BUS.pdb

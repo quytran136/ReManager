@@ -1,0 +1,8 @@
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\bin\Release\ResManager.Common.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\bin\Release\ResManager.Common.pdb
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Release\ResManager.Common.csprojAssemblyReference.cache
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Release\ResManager.Common.Message.SystemExceptionMessage.resources
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Release\ResManager.Common.csproj.GenerateResource.cache
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Release\ResManager.Common.csproj.CoreCompileInputs.cache
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Release\ResManager.Common.dll
+E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Release\ResManager.Common.pdb
