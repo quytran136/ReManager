@@ -20,7 +20,7 @@ namespace ResManager.DAO.Databases
         public Nullable<int> SoLuong { get; set; }
         public Nullable<decimal> DonGia { get; set; }
         public Nullable<bool> ThanhToan { get; set; }
-        public string NgayTao { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
     
         public virtual C00_BanAn C00_BanAn { get; set; }
         public virtual C01_Mon C01_Mon { get; set; }

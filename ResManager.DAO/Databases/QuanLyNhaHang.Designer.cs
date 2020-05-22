@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\Databases\QuanLyNhaHang.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\back up 15-4-2020\Desktop\ResManager\ResManager.DAO\Databases\QuanLyNhaHang.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

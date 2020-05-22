@@ -1,6 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="QuanLyNhaHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="QuanLyNhaHangEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QuanLyNhaHangModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QuanLyNhaHangModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
     <EntitySet Name="C00_BanAn" EntityType="QuanLyNhaHangModel.C00_BanAn" />
     <EntitySet Name="C00_KhuVucAn" EntityType="QuanLyNhaHangModel.C00_KhuVucAn" />
     <EntitySet Name="C00_LoaiBan" EntityType="QuanLyNhaHangModel.C00_LoaiBan" />
@@ -91,6 +121,17 @@
       <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
     </AssociationSet>
   </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
   <EntityType Name="C00_BanAn">
     <Key>
       <PropertyRef Name="Id" />
@@ -252,7 +293,7 @@
     <Property Name="SoLuong" Type="Int32" />
     <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="ThanhToan" Type="Boolean" />
-    <Property Name="NgayTao" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
     <NavigationProperty Name="C00_BanAn" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_00_BanAn" FromRole="C02_PhucVu" ToRole="C00_BanAn" />
     <NavigationProperty Name="C01_Mon" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_01_Mon" FromRole="C02_PhucVu" ToRole="C01_Mon" />
   </EntityType>

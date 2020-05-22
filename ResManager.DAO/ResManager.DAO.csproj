@@ -129,11 +129,18 @@
     <Compile Include="Databases\Root_TrangThai.cs">
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
+    <Compile Include="Databases\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
     <Compile Include="Databases\sysdiagram.cs">
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebModel\BaseModel.cs" />
+    <Compile Include="WebModel\DatBanViewModel.cs" />
     <Compile Include="WebModel\KhuVucAn.cs" />
     <Compile Include="WebModel\NhaHang.cs" />
   </ItemGroup>

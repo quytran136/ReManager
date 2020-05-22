@@ -144,12 +144,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BanAnController.cs" />
     <Compile Include="Controllers\CongThucController.cs" />
+    <Compile Include="Controllers\DatBanController.cs" />
+    <Compile Include="Controllers\DatBanServiceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoaiBanController.cs" />
     <Compile Include="Controllers\LoaiThucDonController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MonController.cs" />
     <Compile Include="Controllers\QuanLyKhuVucController.cs" />
+    <Compile Include="Controllers\SapXepMenuController.cs" />
     <Compile Include="Controllers\ThongTinNhaHangController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -157,6 +160,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\default.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -226,7 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +237,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\dist\css\adminlte.css.map" />
@@ -283,6 +288,13 @@
     <Content Include="Views\Menu\Details.cshtml" />
     <Content Include="Views\Menu\Edit.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\DatBan\Index.cshtml" />
+    <Content Include="Views\DatBan\SuDung.cshtml" />
+    <Content Include="Views\SapXepMenu\Create.cshtml" />
+    <Content Include="Views\SapXepMenu\Delete.cshtml" />
+    <Content Include="Views\SapXepMenu\Details.cshtml" />
+    <Content Include="Views\SapXepMenu\Edit.cshtml" />
+    <Content Include="Views\SapXepMenu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

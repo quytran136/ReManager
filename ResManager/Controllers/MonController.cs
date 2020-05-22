@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 using ResManager.BUS.QuanLyThongTin;
 using ResManager.DAO.CommonModel;
 using ResManager.DAO.Databases;
@@ -52,7 +54,6 @@ namespace ResManager.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TenMon,IdTrangThai,DonVi,DonGia")] C01_Mon c01_Mon)
         {
             if (ModelState.IsValid)
@@ -86,7 +87,6 @@ namespace ResManager.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,TenMon,IdTrangThai,DonVi,DonGia")] C01_Mon c01_Mon)
         {
             if (ModelState.IsValid)
@@ -116,7 +116,7 @@ namespace ResManager.Controllers
 
         // POST: Mon/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             C01_Mon c01_Mon = db.C01_Mon.Find(id);
@@ -133,5 +133,33 @@ namespace ResManager.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public string GetMonAn(int? idThucDon)
+        {
+            List<test> lisMonAn = new List<test>();
+            lisMonAn = (from sapxepmenu in db.C01_SapXepMenu
+                        join mon in db.C01_Mon on sapxepmenu.IdMon equals mon.Id
+                        where sapxepmenu.IdMenu == idThucDon
+                        select new test
+                        {
+                            Id = mon.Id,
+                            TenMon = mon.TenMon,
+                            DonGia = mon.DonGia.Value,
+                            DonVi = mon.DonVi
+                        }).ToList();
+            return JsonConvert.SerializeObject(lisMonAn, Formatting.Indented);
+        }
+    }
+
+    public class test
+    {
+        public int? Id { get; set; }
+
+        public string TenMon { get; set; }
+
+        public Decimal DonGia { get; set; }
+
+        public string DonVi { get; set; }
     }
 }

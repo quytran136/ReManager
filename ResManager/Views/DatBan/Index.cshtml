@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ResManager.DAO.Databases.C00_BanAn>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section cssSection{
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/Scripts/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Scripts/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+}
+
+<div class="row row-cols-6">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card card-widget card-success">
+                <div class="card-header">
+                    <h3 class="card-title">@Html.DisplayFor(modelItem => item.TenBanAn)</h3>
+                    <div class="card-tools">
+                        <span data-toggle="tooltip" title="@Html.DisplayFor(modelItem => item.Root_QuanLyTrangThai.Root_TrangThai.TenTrangThai)" class="badge bg-primary">@Html.DisplayFor(modelItem => item.Root_QuanLyTrangThai.Root_TrangThai.TenTrangThai)</span>
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <img class="img-fluid pad" src="~/Content/default.jpg" alt="Photo">
+                    <div class="row">
+                        <div class="col-sm-4 border-right">
+                            <div class="description-block">
+                                <div class="fa fa-chair"></div>
+                                <h5 class="description-header">@Html.DisplayFor(modelItem => item.SoGhe)</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 border-right">
+                            <div class="description-block">
+                                <div class="fas fa-glass-cheers"></div>
+                                <h5 class="description-header">@Html.DisplayFor(modelItem => item.C00_LoaiBan.TenLoaiBan)</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="description-block">
+                                <div class="fas fa-map-marker-alt"></div>
+                                <h5 class="description-header">@Html.DisplayFor(modelItem => item.C00_KhuVucAn.TenLoaiKhuVuc)</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @{
+                        if (item.IdTrangThai == 1 || item.IdTrangThai == 3 || item.IdTrangThai == 5 || item.IdTrangThai == 4)
+                        {
+                            @Html.ActionLink("Sủ dụng / Đặt trước", "SuDung", new { id = item.Id }, new { Class = "btn btn-primary btn-flat" })
+                        }
+
+                        if (item.IdTrangThai == 2)
+                        {
+                            @Html.ActionLink("Sử dụng", "SuDung", new { id = item.Id }, new { Class = "btn btn-info btn-flat" })
+                            @Html.ActionLink("Thanh toán", "ThanhToan", new { id = item.Id }, new { Class = "btn btn-success btn-flat" })
+                            @Html.ActionLink("Hủy bàn", "DatBan", new { id = item.Id }, new { Class = "btn btn-danger btn-flat" })
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section dataSection
+{
+    <!-- DataTables -->
+    <script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <!-- \DataTables -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}
