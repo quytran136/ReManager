@@ -44,7 +44,10 @@
     <EntitySet Name="C01_SapXepNhom" EntityType="QuanLyNhaHangModel.C01_SapXepNhom" />
     <EntitySet Name="C02_ChiTietHoaDon" EntityType="QuanLyNhaHangModel.C02_ChiTietHoaDon" />
     <EntitySet Name="C02_HoaDon" EntityType="QuanLyNhaHangModel.C02_HoaDon" />
+    <EntitySet Name="C02_LichSuDungBanAn" EntityType="QuanLyNhaHangModel.C02_LichSuDungBanAn" />
     <EntitySet Name="C02_PhucVu" EntityType="QuanLyNhaHangModel.C02_PhucVu" />
+    <EntitySet Name="C02_Voucher" EntityType="QuanLyNhaHangModel.C02_Voucher" />
+    <EntitySet Name="C03_CustomerReview" EntityType="QuanLyNhaHangModel.C03_CustomerReview" />
     <EntitySet Name="Root_DonVi" EntityType="QuanLyNhaHangModel.Root_DonVi" />
     <EntitySet Name="Root_NhomQuyen" EntityType="QuanLyNhaHangModel.Root_NhomQuyen" />
     <EntitySet Name="Root_NhomTrangThai" EntityType="QuanLyNhaHangModel.Root_NhomTrangThai" />
@@ -63,10 +66,6 @@
     <AssociationSet Name="FK_00_BanAn_Root_QuanLyTrangThai" Association="QuanLyNhaHangModel.FK_00_BanAn_Root_QuanLyTrangThai">
       <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
       <End Role="C00_BanAn" EntitySet="C00_BanAn" />
-    </AssociationSet>
-    <AssociationSet Name="FK_02_PhucVu_00_BanAn" Association="QuanLyNhaHangModel.FK_02_PhucVu_00_BanAn">
-      <End Role="C00_BanAn" EntitySet="C00_BanAn" />
-      <End Role="C02_PhucVu" EntitySet="C02_PhucVu" />
     </AssociationSet>
     <AssociationSet Name="FK_00_KhuVucAn_Root_QuanLyTrangThai" Association="QuanLyNhaHangModel.FK_00_KhuVucAn_Root_QuanLyTrangThai">
       <End Role="Root_QuanLyTrangThai" EntitySet="Root_QuanLyTrangThai" />
@@ -104,6 +103,10 @@
       <End Role="C01_Mon" EntitySet="C01_Mon" />
       <End Role="C02_PhucVu" EntitySet="C02_PhucVu" />
     </AssociationSet>
+    <AssociationSet Name="FK_C03_CustomerReview_01_Mon" Association="QuanLyNhaHangModel.FK_C03_CustomerReview_01_Mon">
+      <End Role="C01_Mon" EntitySet="C01_Mon" />
+      <End Role="C03_CustomerReview" EntitySet="C03_CustomerReview" />
+    </AssociationSet>
     <AssociationSet Name="FK_01_SapXepNhom_01_NhomMon" Association="QuanLyNhaHangModel.FK_01_SapXepNhom_01_NhomMon">
       <End Role="C01_NhomMon" EntitySet="C01_NhomMon" />
       <End Role="C01_SapXepNhom" EntitySet="C01_SapXepNhom" />
@@ -111,6 +114,14 @@
     <AssociationSet Name="FK_02_ChiTietHoaDon_02_HoaDon" Association="QuanLyNhaHangModel.FK_02_ChiTietHoaDon_02_HoaDon">
       <End Role="C02_HoaDon" EntitySet="C02_HoaDon" />
       <End Role="C02_ChiTietHoaDon" EntitySet="C02_ChiTietHoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_02_HoaDon_02_LichSuDungBanAn" Association="QuanLyNhaHangModel.FK_02_HoaDon_02_LichSuDungBanAn">
+      <End Role="C02_LichSuDungBanAn" EntitySet="C02_LichSuDungBanAn" />
+      <End Role="C02_HoaDon" EntitySet="C02_HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_02_PhucVu_02_LichSuDungBanAn" Association="QuanLyNhaHangModel.FK_02_PhucVu_02_LichSuDungBanAn">
+      <End Role="C02_LichSuDungBanAn" EntitySet="C02_LichSuDungBanAn" />
+      <End Role="C02_PhucVu" EntitySet="C02_PhucVu" />
     </AssociationSet>
     <AssociationSet Name="FK_Root_QuanLyTrangThai_Root_NhomTrangThai" Association="QuanLyNhaHangModel.FK_Root_QuanLyTrangThai_Root_NhomTrangThai">
       <End Role="Root_NhomTrangThai" EntitySet="Root_NhomTrangThai" />
@@ -147,7 +158,6 @@
     <NavigationProperty Name="C00_LoaiBan" Relationship="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiBan" FromRole="C00_BanAn" ToRole="C00_LoaiBan" />
     <NavigationProperty Name="C00_KhuVucAn" Relationship="QuanLyNhaHangModel.FK_00_BanAn_00_LoaiKhuVuc" FromRole="C00_BanAn" ToRole="C00_KhuVucAn" />
     <NavigationProperty Name="Root_QuanLyTrangThai" Relationship="QuanLyNhaHangModel.FK_00_BanAn_Root_QuanLyTrangThai" FromRole="C00_BanAn" ToRole="Root_QuanLyTrangThai" />
-    <NavigationProperty Name="C02_PhucVu" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_00_BanAn" FromRole="C00_BanAn" ToRole="C02_PhucVu" />
   </EntityType>
   <EntityType Name="C00_KhuVucAn">
     <Key>
@@ -221,11 +231,14 @@
     <Property Name="IdTrangThai" Type="Int32" />
     <Property Name="DonVi" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
     <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="C01_CongThuc" Relationship="QuanLyNhaHangModel.FK_01_CongThuc_01_Mon" FromRole="C01_Mon" ToRole="C01_CongThuc" />
     <NavigationProperty Name="Root_QuanLyTrangThai" Relationship="QuanLyNhaHangModel.FK_01_Mon_Root_QuanLyTrangThai1" FromRole="C01_Mon" ToRole="Root_QuanLyTrangThai" />
     <NavigationProperty Name="C01_SapXepMenu" Relationship="QuanLyNhaHangModel.FK_01_SapXepMenu_01_Mon" FromRole="C01_Mon" ToRole="C01_SapXepMenu" />
     <NavigationProperty Name="C01_SapXepNhom" Relationship="QuanLyNhaHangModel.FK_01_SapXepNhom_01_Mon" FromRole="C01_Mon" ToRole="C01_SapXepNhom" />
     <NavigationProperty Name="C02_PhucVu" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_01_Mon" FromRole="C01_Mon" ToRole="C02_PhucVu" />
+    <NavigationProperty Name="C03_CustomerReview" Relationship="QuanLyNhaHangModel.FK_C03_CustomerReview_01_Mon" FromRole="C01_Mon" ToRole="C03_CustomerReview" />
   </EntityType>
   <EntityType Name="C01_NhomMon">
     <Key>
@@ -275,13 +288,25 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MaHoaDon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IdBan" Type="Int32" />
+    <Property Name="IdLichSuBan" Type="Int32" />
     <Property Name="PhaiThu" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="ThucThu" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="ChoNo" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="TrietKhau" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="MaVoucher" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="MaVoucher" Type="Int32" />
     <NavigationProperty Name="C02_ChiTietHoaDon" Relationship="QuanLyNhaHangModel.FK_02_ChiTietHoaDon_02_HoaDon" FromRole="C02_HoaDon" ToRole="C02_ChiTietHoaDon" />
+    <NavigationProperty Name="C02_LichSuDungBanAn" Relationship="QuanLyNhaHangModel.FK_02_HoaDon_02_LichSuDungBanAn" FromRole="C02_HoaDon" ToRole="C02_LichSuDungBanAn" />
+  </EntityType>
+  <EntityType Name="C02_LichSuDungBanAn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdBanAn" Type="Int32" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="IsSuDung" Type="Boolean" />
+    <NavigationProperty Name="C02_HoaDon" Relationship="QuanLyNhaHangModel.FK_02_HoaDon_02_LichSuDungBanAn" FromRole="C02_LichSuDungBanAn" ToRole="C02_HoaDon" />
+    <NavigationProperty Name="C02_PhucVu" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_02_LichSuDungBanAn" FromRole="C02_LichSuDungBanAn" ToRole="C02_PhucVu" />
   </EntityType>
   <EntityType Name="C02_PhucVu">
     <Key>
@@ -289,13 +314,38 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdMon" Type="Int32" />
-    <Property Name="IdBan" Type="Int32" />
+    <Property Name="IdLichSuDungBanAn" Type="Int32" />
     <Property Name="SoLuong" Type="Int32" />
     <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="ThanhToan" Type="Boolean" />
     <Property Name="NgayTao" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="C00_BanAn" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_00_BanAn" FromRole="C02_PhucVu" ToRole="C00_BanAn" />
     <NavigationProperty Name="C01_Mon" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_01_Mon" FromRole="C02_PhucVu" ToRole="C01_Mon" />
+    <NavigationProperty Name="C02_LichSuDungBanAn" Relationship="QuanLyNhaHangModel.FK_02_PhucVu_02_LichSuDungBanAn" FromRole="C02_PhucVu" ToRole="C02_LichSuDungBanAn" />
+  </EntityType>
+  <EntityType Name="C02_Voucher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaGiamGia" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="NgayHieuLuc" Type="DateTime" Precision="3" />
+    <Property Name="NgayHetHan" Type="DateTime" Precision="3" />
+    <Property Name="SoLuongKichHoat" Type="Int32" />
+    <Property Name="SoLuongToiDa" Type="Int32" />
+    <Property Name="KhauTru" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PhanTramKhauTru" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="C03_CustomerReview">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Review" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Rating" Type="Int32" />
+    <Property Name="IdMon" Type="Int32" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="C01_Mon" Relationship="QuanLyNhaHangModel.FK_C03_CustomerReview_01_Mon" FromRole="C03_CustomerReview" ToRole="C01_Mon" />
   </EntityType>
   <EntityType Name="Root_DonVi">
     <Key>
@@ -391,18 +441,6 @@
       </Principal>
       <Dependent Role="C00_BanAn">
         <PropertyRef Name="IdTrangThai" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_02_PhucVu_00_BanAn">
-    <End Type="QuanLyNhaHangModel.C00_BanAn" Role="C00_BanAn" Multiplicity="0..1" />
-    <End Type="QuanLyNhaHangModel.C02_PhucVu" Role="C02_PhucVu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C00_BanAn">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="C02_PhucVu">
-        <PropertyRef Name="IdBan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -514,6 +552,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C03_CustomerReview_01_Mon">
+    <End Type="QuanLyNhaHangModel.C01_Mon" Role="C01_Mon" Multiplicity="0..1" />
+    <End Type="QuanLyNhaHangModel.C03_CustomerReview" Role="C03_CustomerReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C01_Mon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="C03_CustomerReview">
+        <PropertyRef Name="IdMon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_01_SapXepNhom_01_NhomMon">
     <End Type="QuanLyNhaHangModel.C01_NhomMon" Role="C01_NhomMon" Multiplicity="0..1" />
     <End Type="QuanLyNhaHangModel.C01_SapXepNhom" Role="C01_SapXepNhom" Multiplicity="*" />
@@ -535,6 +585,30 @@
       </Principal>
       <Dependent Role="C02_ChiTietHoaDon">
         <PropertyRef Name="IdHoaDon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_02_HoaDon_02_LichSuDungBanAn">
+    <End Type="QuanLyNhaHangModel.C02_LichSuDungBanAn" Role="C02_LichSuDungBanAn" Multiplicity="0..1" />
+    <End Type="QuanLyNhaHangModel.C02_HoaDon" Role="C02_HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C02_LichSuDungBanAn">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="C02_HoaDon">
+        <PropertyRef Name="IdLichSuBan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_02_PhucVu_02_LichSuDungBanAn">
+    <End Type="QuanLyNhaHangModel.C02_LichSuDungBanAn" Role="C02_LichSuDungBanAn" Multiplicity="0..1" />
+    <End Type="QuanLyNhaHangModel.C02_PhucVu" Role="C02_PhucVu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C02_LichSuDungBanAn">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="C02_PhucVu">
+        <PropertyRef Name="IdLichSuDungBanAn" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

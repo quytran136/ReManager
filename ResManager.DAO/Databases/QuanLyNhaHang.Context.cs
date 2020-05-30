@@ -40,7 +40,10 @@ namespace ResManager.DAO.Databases
         public virtual DbSet<C01_SapXepNhom> C01_SapXepNhom { get; set; }
         public virtual DbSet<C02_ChiTietHoaDon> C02_ChiTietHoaDon { get; set; }
         public virtual DbSet<C02_HoaDon> C02_HoaDon { get; set; }
+        public virtual DbSet<C02_LichSuDungBanAn> C02_LichSuDungBanAn { get; set; }
         public virtual DbSet<C02_PhucVu> C02_PhucVu { get; set; }
+        public virtual DbSet<C02_Voucher> C02_Voucher { get; set; }
+        public virtual DbSet<C03_CustomerReview> C03_CustomerReview { get; set; }
         public virtual DbSet<Root_DonVi> Root_DonVi { get; set; }
         public virtual DbSet<Root_NhomQuyen> Root_NhomQuyen { get; set; }
         public virtual DbSet<Root_NhomTrangThai> Root_NhomTrangThai { get; set; }

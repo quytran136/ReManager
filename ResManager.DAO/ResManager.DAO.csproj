@@ -93,7 +93,16 @@
     <Compile Include="Databases\C02_HoaDon.cs">
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
+    <Compile Include="Databases\C02_LichSuDungBanAn.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
     <Compile Include="Databases\C02_PhucVu.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\C02_Voucher.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\C03_CustomerReview.cs">
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\QuanLyNhaHang.Context.cs">
@@ -139,10 +148,15 @@
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebModel\Access.cs" />
     <Compile Include="WebModel\BaseModel.cs" />
+    <Compile Include="WebModel\Customer.cs" />
+    <Compile Include="WebModel\DanhGiaViewModel.cs" />
     <Compile Include="WebModel\DatBanViewModel.cs" />
+    <Compile Include="WebModel\HoaDonViewModel.cs" />
     <Compile Include="WebModel\KhuVucAn.cs" />
     <Compile Include="WebModel\NhaHang.cs" />
+    <Compile Include="WebModel\TongQuanHoatDongViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiModel\" />

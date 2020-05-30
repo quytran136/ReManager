@@ -103,6 +103,8 @@
     <EntitySetMapping Name="C01_Mon">
       <EntityTypeMapping TypeName="QuanLyNhaHangModel.C01_Mon">
         <MappingFragment StoreEntitySet="01_Mon">
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
           <ScalarProperty Name="DonGia" ColumnName="DonGia" />
           <ScalarProperty Name="DonVi" ColumnName="DonVi" />
           <ScalarProperty Name="IdTrangThai" ColumnName="IdTrangThai" />
@@ -159,8 +161,18 @@
           <ScalarProperty Name="ChoNo" ColumnName="ChoNo" />
           <ScalarProperty Name="ThucThu" ColumnName="ThucThu" />
           <ScalarProperty Name="PhaiThu" ColumnName="PhaiThu" />
-          <ScalarProperty Name="IdBan" ColumnName="IdBan" />
+          <ScalarProperty Name="IdLichSuBan" ColumnName="IdLichSuBan" />
           <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C02_LichSuDungBanAn">
+      <EntityTypeMapping TypeName="QuanLyNhaHangModel.C02_LichSuDungBanAn">
+        <MappingFragment StoreEntitySet="02_LichSuDungBanAn">
+          <ScalarProperty Name="IsSuDung" ColumnName="IsSuDung" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="IdBanAn" ColumnName="IdBanAn" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -172,8 +184,34 @@
           <ScalarProperty Name="ThanhToan" ColumnName="ThanhToan" />
           <ScalarProperty Name="DonGia" ColumnName="DonGia" />
           <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-          <ScalarProperty Name="IdBan" ColumnName="IdBan" />
+          <ScalarProperty Name="IdLichSuDungBanAn" ColumnName="IdLichSuDungBanAn" />
           <ScalarProperty Name="IdMon" ColumnName="IdMon" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C02_Voucher">
+      <EntityTypeMapping TypeName="QuanLyNhaHangModel.C02_Voucher">
+        <MappingFragment StoreEntitySet="C02_Voucher">
+          <ScalarProperty Name="PhanTramKhauTru" ColumnName="PhanTramKhauTru" />
+          <ScalarProperty Name="KhauTru" ColumnName="KhauTru" />
+          <ScalarProperty Name="SoLuongToiDa" ColumnName="SoLuongToiDa" />
+          <ScalarProperty Name="SoLuongKichHoat" ColumnName="SoLuongKichHoat" />
+          <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
+          <ScalarProperty Name="NgayHieuLuc" ColumnName="NgayHieuLuc" />
+          <ScalarProperty Name="MaGiamGia" ColumnName="MaGiamGia" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C03_CustomerReview">
+      <EntityTypeMapping TypeName="QuanLyNhaHangModel.C03_CustomerReview">
+        <MappingFragment StoreEntitySet="C03_CustomerReview">
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="IdMon" ColumnName="IdMon" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Review" ColumnName="Review" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

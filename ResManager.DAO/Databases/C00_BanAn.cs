@@ -14,12 +14,6 @@ namespace ResManager.DAO.Databases
     
     public partial class C00_BanAn
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C00_BanAn()
-        {
-            this.C02_PhucVu = new HashSet<C02_PhucVu>();
-        }
-    
         public int Id { get; set; }
         public string TenBanAn { get; set; }
         public Nullable<int> SoBanAn { get; set; }
@@ -32,7 +26,5 @@ namespace ResManager.DAO.Databases
         public virtual C00_LoaiBan C00_LoaiBan { get; set; }
         public virtual C00_KhuVucAn C00_KhuVucAn { get; set; }
         public virtual Root_QuanLyTrangThai Root_QuanLyTrangThai { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C02_PhucVu> C02_PhucVu { get; set; }
     }
 }

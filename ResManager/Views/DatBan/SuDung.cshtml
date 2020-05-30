@@ -16,15 +16,16 @@
     @{ if (Model.idTrangThai == 4)
         {
             <a href="#" class="btn btn-primary btn-flat" onclick="DatTruoc()">Đặt trước</a>
-            <a href="#" class="btn btn-primary btn-flat" onclick="SuDung()">Sử dụng</a>
+            <a href="#" class="btn btn-success btn-flat" onclick="SuDung()">Sử dụng</a>
         }
         if (Model.idTrangThai == 5)
         {
-            <a href="#" class="btn btn-primary btn-flat" onclick="SuDung()">Sử dụng</a>
+            <a href="#" class="btn btn-success btn-flat" onclick="SuDung()">Sử dụng</a>
         }
         if (Model.idTrangThai == 2)
         {
-            <a href="#" class="btn btn-primary btn-flat">Thanh Toán</a>
+            @Html.ActionLink("Thanh toan", "ThanhToan", "HoaDon", new { idBanAn = Model.idBanAn }, new { Class = "btn btn-primary btn-flat" })
+            <a href="#" class="btn btn-warning btn-flat" onclick="HuyBan()">Hủy Bàn</a>
         }
     }
 </div>
@@ -114,6 +115,44 @@
             </div>
             <!-- /.card-body -->
         </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Danh sách món đã thanh toán</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="form-group">
+                    <table id="example3" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tên món
+                                </th>
+                                <th>
+                                    Đơn vị
+                                </th>
+                                <th>
+                                    Đơn giá
+                                </th>
+                                <th>
+                                    Số lượng
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="DanhSachMonDaThanhToan">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
     </div>
 </div>
 
@@ -138,6 +177,10 @@
                 "autoWidth": false,
             });
             $('#example2').DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+            $('#example3').DataTable({
                 "responsive": true,
                 "autoWidth": false,
             });
@@ -178,6 +221,22 @@
             });
         });
 
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("MonDaGoi", "DatBan", null, Request.Url.Scheme)',
+                type: "POST",
+                data: JSON.stringify({
+                    "idBanAn": @Model.idBanAn
+                }),
+                success: function (data) {
+                    loadTable(data);
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            });
+            DanhSachMonDaThanhToan(@Model.idBanAn);
+        });
+
         function loadTable(data) {
             $("#DanhSachMonDaGoi").html("");
             var a = "";
@@ -204,20 +263,6 @@
             }
         }
 
-        $(document).ready(function () {
-            $.ajax({
-                url: '@Url.Action("MonDaGoi", "DatBan", null, Request.Url.Scheme)',
-                type: "POST",
-                data: JSON.stringify({
-                    "idBanAn": @Model.idBanAn
-                }),
-                success: function (data) {
-                    loadTable(data);
-                },
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-            });
-        });
 
         function GoiMon(idMon, idBanAn) {
             $.ajax({
@@ -261,6 +306,40 @@
                 }),
                 success: function (data) {
                     loadTable(data);
+                    DanhSachMonDaThanhToan(idBanAn);
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            });
+        }
+
+        function DanhSachMonDaThanhToan(idBanAn) {
+            $.ajax({
+                url: '@Url.Action("DanhSachMonDaThanhToan", "DatBan", null, Request.Url.Scheme)',
+                type: "POST",
+                data: JSON.stringify({
+                    "idBanAn": idBanAn
+                }),
+                success: function (data) {
+                    $("#DanhSachMonDaThanhToan").html("");
+                    var a = "";
+                    for (const property1 in data) {
+                        a = '<tr>' +
+                            '<td>' +
+                            `${data[property1]['TenMon']} ` +
+                            '</td>'+
+                            '<td>' +
+                            `${data[property1]['DonVi']} ` +
+                            '</td>' +
+                            '<td>' +
+                            `${formatter.format(data[property1]['DonGia']) }` +
+                            '</td>' +
+                            '<td>' +
+                            `${formatter.format(data[property1]['SoLuong'])}` +
+                            '</td>' +
+                            '</tr>';
+                        $("#DanhSachMonDaThanhToan").append(a);
+                    }
                 },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -274,8 +353,8 @@
                 data: JSON.stringify({
                     "idBanAn": @Model.idBanAn,
                 }),
-                success: function (data) {
-                    location.reload();
+                complete: function (data) {
+                    window.location.reload(true);
                 },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -289,8 +368,23 @@
                 data: JSON.stringify({
                     "idBanAn": @Model.idBanAn,
                 }),
-                success: function (data) {
-                    location.reload();
+                complete: function (data) {
+                    window.location.reload(true);
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            });
+        }
+
+        function HuyBan() {
+            $.ajax({
+                url: '@Url.Action("HuyBan", "DatBan", null, Request.Url.Scheme)',
+                type: "POST",
+                data: JSON.stringify({
+                    "idBanAn": @Model.idBanAn,
+                }),
+                complete: function (data) {
+                    window.location.reload(true);
                 },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

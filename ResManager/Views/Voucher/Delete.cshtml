@@ -1,0 +1,65 @@
+﻿@model ResManager.DAO.Databases.C02_Voucher
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>C02_Voucher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaGiamGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaGiamGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayHieuLuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayHieuLuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayHetHan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayHetHan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongKichHoat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongKichHoat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongToiDa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongToiDa)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

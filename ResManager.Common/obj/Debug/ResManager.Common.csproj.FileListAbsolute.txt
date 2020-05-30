@@ -16,7 +16,6 @@ E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Debug\ResManager.C
 E:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Debug\ResManager.Common.csprojAssemblyReference.cache
 D:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\bin\Debug\ResManager.Common.dll
 D:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\bin\Debug\ResManager.Common.pdb
-D:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Debug\ResManager.Common.csprojAssemblyReference.cache
 D:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Debug\ResManager.Common.Message.SystemExceptionMessage.resources
 D:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Debug\ResManager.Common.csproj.GenerateResource.cache
 D:\back up 15-4-2020\Desktop\ResManager\ResManager.Common\obj\Debug\ResManager.Common.csproj.CoreCompileInputs.cache

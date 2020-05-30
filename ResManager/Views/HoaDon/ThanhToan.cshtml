@@ -1,0 +1,193 @@
+﻿@model ResManager.DAO.WebModel.HoaDonViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <!-- Left col -->
+    <div class="col-6">
+        <!-- MAP & BOX PANE -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Hóa Đơn</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <img class="img-fluid pad" src="~/Content/default.jpg" alt="Photo">
+                <div class="row">
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <div class="fa fa-chair"></div>
+                            <h5 class="description-header">@Html.DisplayFor(modelItem => Model.BanAn.SoGhe)</h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <div class="fas fa-glass-cheers"></div>
+                            <h5 class="description-header">@Html.DisplayFor(modelItem => Model.BanAn.C00_LoaiBan.TenLoaiBan)</h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="description-block">
+                            <div class="fas fa-map-marker-alt"></div>
+                            <h5 class="description-header">@Html.DisplayFor(modelItem => Model.BanAn.C00_KhuVucAn.TenLoaiKhuVuc)</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                @if (Model.BanAn.IdTrangThai != 4)
+                {
+                    <a href="#" class="btn btn-primary btn-flat" onclick="ThanhToan()">Thanh Toán</a>
+                }
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+
+    <!-- Left col -->
+    <div class="col-6">
+        <!-- MAP & BOX PANE -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Chi tiết hóa đơn</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="form-group">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tên món
+                                </th>
+                                <th>
+                                    Đơn giá
+                                </th>
+                                <th>
+                                    Số lượng
+                                </th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ foreach (var item in Model.lisMonAn)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TenMon)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DonGia)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SoLuong)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ThanhTien)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    Thành tiền
+                                </th>
+                                <th colspan="3" class="text-right">
+                                    @Model.TongPhaiThu
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Khấu trừ
+                                </th>
+                                <th id="KhauTru" colspan="3" class="text-right">
+                                    0
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    PhaiThu
+                                </th>
+                                <th id="PhaiThu" colspan="3" class="text-right">
+                                    @Model.TongThucThu
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="input-group input-group-sm">
+                    <input type="text" id="VoucherCode" class="form-control">
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-info btn-flat" onclick="DungVoucher()">Dùng voucher</button>
+                    </span>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section dataSection
+{
+    <script>
+    function ThanhToan() {
+            $.ajax({
+                url: '@Url.Action("LapHoaDon", "HoaDon", null, Request.Url.Scheme)',
+                type: "POST",
+                data: JSON.stringify({
+                    "idBanAn": @Model.BanAn.Id,
+                }),
+                success: function (data) {
+                },
+                complete: function () {
+                    alert("Thanh Toán Thành Công");
+                    var url = '@Url.Action("Index", "DatBan")';
+                    window.location.href = url;
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            });
+        }
+
+        function DungVoucher() {
+            var VoucherCode = $('#VoucherCode').val();
+             $.ajax({
+                url: '@Url.Action("SuDungVoucher", "HoaDon", null, Request.Url.Scheme)',
+                type: "POST",
+                data: JSON.stringify({
+                    "idBanAn": @Model.BanAn.Id,
+                    "VoucherCode": VoucherCode
+                }),
+                 success: function (data) {
+                     if (data['code'] == 1) {
+                         alert(data['message']);
+                     }
+                     if (data['code'] == 0) {
+                         $('#KhauTru').html("");
+                         $('#PhaiThu').html("");
+                         $('#KhauTru').append(data['record']['TrietKhau']);
+                         $('#PhaiThu').append(data['record']['TongThucThu']);
+                     }
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            });
+        }
+    </script>
+}

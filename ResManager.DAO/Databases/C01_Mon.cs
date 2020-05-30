@@ -21,6 +21,7 @@ namespace ResManager.DAO.Databases
             this.C01_SapXepMenu = new HashSet<C01_SapXepMenu>();
             this.C01_SapXepNhom = new HashSet<C01_SapXepNhom>();
             this.C02_PhucVu = new HashSet<C02_PhucVu>();
+            this.C03_CustomerReview = new HashSet<C03_CustomerReview>();
         }
     
         public int Id { get; set; }
@@ -28,6 +29,8 @@ namespace ResManager.DAO.Databases
         public Nullable<int> IdTrangThai { get; set; }
         public string DonVi { get; set; }
         public Nullable<decimal> DonGia { get; set; }
+        public string GhiChu { get; set; }
+        public string HinhAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C01_CongThuc> C01_CongThuc { get; set; }
@@ -38,5 +41,7 @@ namespace ResManager.DAO.Databases
         public virtual ICollection<C01_SapXepNhom> C01_SapXepNhom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C02_PhucVu> C02_PhucVu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C03_CustomerReview> C03_CustomerReview { get; set; }
     }
 }

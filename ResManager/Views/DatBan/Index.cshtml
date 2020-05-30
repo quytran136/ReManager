@@ -60,8 +60,8 @@
                         if (item.IdTrangThai == 2)
                         {
                             @Html.ActionLink("Sử dụng", "SuDung", new { id = item.Id }, new { Class = "btn btn-info btn-flat" })
-                            @Html.ActionLink("Thanh toán", "ThanhToan", new { id = item.Id }, new { Class = "btn btn-success btn-flat" })
-                            @Html.ActionLink("Hủy bàn", "DatBan", new { id = item.Id }, new { Class = "btn btn-danger btn-flat" })
+                            @Html.ActionLink("Thanh toán", "ThanhToan", "HoaDon", new { id = item.Id }, new { Class = "btn btn-success btn-flat" })
+                            @Html.ActionLink("Hủy bàn", "HuyBanA", new { id = item.Id }, new { Class = "btn btn-danger btn-flat" })
                         }
                     }
 

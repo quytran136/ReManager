@@ -54,7 +54,7 @@ namespace ResManager.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create([Bind(Include = "Id,TenMon,IdTrangThai,DonVi,DonGia")] C01_Mon c01_Mon)
+        public ActionResult Create([Bind(Include = "Id,TenMon,IdTrangThai,DonVi,DonGia,HinhAnh")] C01_Mon c01_Mon)
         {
             if (ModelState.IsValid)
             {

@@ -24,5 +24,6 @@ namespace ResManager.DAO.WebModel
         public string DonVi { get; set; }
         public string DonGia { get; set; }
         public string SoLuong { get; set; }
+        public decimal? ThanhTien { get; set; }
     }
 }

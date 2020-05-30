@@ -22,14 +22,15 @@ namespace ResManager.DAO.Databases
     
         public int Id { get; set; }
         public string MaHoaDon { get; set; }
-        public Nullable<int> IdBan { get; set; }
+        public Nullable<int> IdLichSuBan { get; set; }
         public Nullable<decimal> PhaiThu { get; set; }
         public Nullable<decimal> ThucThu { get; set; }
         public Nullable<decimal> ChoNo { get; set; }
         public Nullable<decimal> TrietKhau { get; set; }
-        public string MaVoucher { get; set; }
+        public Nullable<int> MaVoucher { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C02_ChiTietHoaDon> C02_ChiTietHoaDon { get; set; }
+        public virtual C02_LichSuDungBanAn C02_LichSuDungBanAn { get; set; }
     }
 }

@@ -186,8 +186,6 @@ E:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.dll
 E:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.pdb
 D:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.csprojAssemblyReference.cache
 D:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.csproj.CoreCompileInputs.cache
-D:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.dll
-D:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.pdb
 D:\back up 15-4-2020\Desktop\ResManager\ResManager\bin\ResManager.dll.config
 D:\back up 15-4-2020\Desktop\ResManager\ResManager\bin\ResManager.dll
 D:\back up 15-4-2020\Desktop\ResManager\ResManager\bin\ResManager.pdb
@@ -277,3 +275,5 @@ D:\back up 15-4-2020\Desktop\ResManager\ResManager\bin\System.Web.Http.WebHost.x
 D:\back up 15-4-2020\Desktop\ResManager\ResManager\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\back up 15-4-2020\Desktop\ResManager\ResManager\bin\ResManager.Common.pdb
 D:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.csproj.CopyComplete
+D:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.dll
+D:\back up 15-4-2020\Desktop\ResManager\ResManager\obj\Debug\ResManager.pdb

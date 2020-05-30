@@ -16,13 +16,13 @@ namespace ResManager.DAO.Databases
     {
         public int Id { get; set; }
         public Nullable<int> IdMon { get; set; }
-        public Nullable<int> IdBan { get; set; }
+        public Nullable<int> IdLichSuDungBanAn { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public Nullable<decimal> DonGia { get; set; }
         public Nullable<bool> ThanhToan { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
     
-        public virtual C00_BanAn C00_BanAn { get; set; }
         public virtual C01_Mon C01_Mon { get; set; }
+        public virtual C02_LichSuDungBanAn C02_LichSuDungBanAn { get; set; }
     }
 }

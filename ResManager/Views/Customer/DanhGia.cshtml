@@ -1,0 +1,143 @@
+﻿@model ResManager.DAO.WebModel.DanhGiaViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+@section cssSection{
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card card-widget card-default">
+            <div class="card-header">
+                <h3 class="card-title">@Html.DisplayFor(modelItem => Model.mon.TenMon)</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <a href="@Url.Action("DanhGia","Customer", new { id = Model.mon.Id })">
+                    <img class="img-fluid pad" src="~/Content/default.jpg" alt="Photo">
+                </a>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="description-block row">
+                            <h5 class="description-header">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:c0}", Math.Round(Model.mon.DonGia.Value, 0))</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-text">
+                    @Model.mon.GhiChu
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card card-primary card-outline">
+            <div class="card-body">
+                <h5 class="card-title">Khách hàng nhận xét</h5>
+
+                <p class="card-text">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input id="email" type="text" class="form-control" placeholder="Nhập nội dung...">
+                    </div>
+                    <div class="form-group">
+                        <label>Nhận xét</label>
+                        <textarea id="nhanXet" class="form-control" rows="3" placeholder="Nhập nội dung..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Đánh giá</label>
+                        <input id="rate" type="number" maxlength="1" max="5" min="1" class="form-control" placeholder="Nhập số sao">
+                    </div>
+                </p>
+                <div class="text-right">
+                    <a href="#" class="btn btn-primary btn-flat" onclick="DanhGia()">Gửi đánh giá</a>
+                </div>
+            </div>
+        </div>
+        <div class="card card-primary card-outline">
+            <div class="card-body">
+                <h5 class="card-title">Nhận xét khác</h5>
+                <p class="card-text">
+                    <div class="timeline">
+                        @foreach (var item in Model.lisReview)
+                        {
+                            <div class="time-label">
+                                <span class="bg-red">@item.ngayTao.Value.ToShortDateString()</span>
+                            </div>
+
+                            foreach (var item2 in item.lisReview)
+                            {
+                                <div>
+                                    <i class="fas fa-comments bg-yellow"></i>
+                                    <div class="timeline-item">
+                                        @*<span class="time"><i class="fas fa-clock"></i> 27 mins ago</span>*@
+                                        <h3 class="timeline-header"><a href="#">@item2.Email</a> đã nhận xét</h3>
+                                        <div class="timeline-body">
+                                            @item2.Review
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <div>
+                                                @for (int i = 0; i < item2.Rating; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: #ffc107"></i>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </p>
+                <a href="#" class="card-link">Card link</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section dataSection
+{
+    <script>
+        function DanhGia() {
+            var email = $('#email').val();
+            var nhanxet = $('#nhanXet').val();
+            var rate = $('#rate').val();
+            if (rate > 5) {
+                alert("Rate vượt quá 5");
+                return;
+            }
+            $.ajax({
+                url: '@Url.Action("GuiDanhGia", "Customer", null, Request.Url.Scheme)',
+                type: "POST",
+                data: JSON.stringify({
+                    "c03_CustomerReview": {
+                        "IdMon": @Model.mon.Id,
+                        "Email": email,
+                        "Review": nhanxet,
+                        "Rating": rate
+                    }
+                }),
+                success: function (data) {
+                    if (data == 1) {
+                        alert("Gửi thất bại");
+                    }
+                    if (data == 0) {
+                        alert("Đánh giá thành công");
+                        var url = '@Url.Action("DanhGia", "Customer")';
+                        window.location.href = url;
+                    }
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            });
+        }
+    </script>
+}
+

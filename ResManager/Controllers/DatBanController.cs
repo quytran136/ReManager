@@ -51,7 +51,7 @@ namespace ResManager.Controllers
             {
                 idTrangThai = BanAn.IdTrangThai,
                 idBanAn = id,
-                lisMonSuDung = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr => ptr.IdBan == id).Select(ptr => new MonDaGoi()
+                lisMonSuDung = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr => ptr.C02_LichSuDungBanAn.IdBanAn == id && ptr.C02_LichSuDungBanAn.IsSuDung == true).Select(ptr => new MonDaGoi()
                 {
                     TenMon = ptr.C01_Mon.TenMon,
                     DonGia = ptr.DonGia.ToString(),
@@ -67,7 +67,19 @@ namespace ResManager.Controllers
         [HttpPost]
         public string MonDaGoi(int? idBanAn)
         {
-            return JsonConvert.SerializeObject(lisMonDaGoi(idBanAn), Formatting.Indented);
+            List<MonDaGoi> lisMonDaGoi = new List<MonDaGoi>();
+            lisMonDaGoi = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr =>
+                ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn &&
+                ptr.C02_LichSuDungBanAn.IsSuDung == true &&
+                ptr.ThanhToan == false).Select(ptr => new MonDaGoi()
+                {
+                    IdMon = ptr.IdMon,
+                    TenMon = ptr.C01_Mon.TenMon,
+                    DonGia = ptr.DonGia.Value.ToString(),
+                    DonVi = ptr.C01_Mon.DonVi,
+                    SoLuong = ptr.SoLuong.Value.ToString()
+                }).ToList();
+            return JsonConvert.SerializeObject(lisMonDaGoi, Formatting.Indented);
         }
 
         [HttpPost]
@@ -80,7 +92,7 @@ namespace ResManager.Controllers
                 return "";
             }
 
-            var checkExist = db.C02_PhucVu.Where(ptr => ptr.IdMon == idMon && ptr.IdBan == idBanAn && ptr.ThanhToan == false);
+            var checkExist = db.C02_PhucVu.Where(ptr => ptr.IdMon == idMon && ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn && ptr.C02_LichSuDungBanAn.IsSuDung == true && ptr.ThanhToan == false);
 
             if (checkExist.Count() > 0)
             {
@@ -92,7 +104,7 @@ namespace ResManager.Controllers
                 C02_PhucVu phucVu = new C02_PhucVu()
                 {
                     IdMon = idMon,
-                    IdBan = idBanAn,
+                    IdLichSuDungBanAn = db.C02_LichSuDungBanAn.FirstOrDefault(ptr => ptr.IdBanAn == idBanAn && ptr.IsSuDung == true).Id,
                     NgayTao = DateTime.Now,
                     ThanhToan = false,
                     DonGia = db.C01_Mon.Where(ptr => ptr.Id == idMon).FirstOrDefault().DonGia.Value,
@@ -108,11 +120,24 @@ namespace ResManager.Controllers
         [HttpPost]
         public string HuyMon(int? idMon, int? idBanAn)
         {
-            var checkExist = db.C02_PhucVu.Where(ptr => ptr.IdMon == idMon && ptr.IdBan == idBanAn && ptr.ThanhToan == false);
+            var checkExist = db.C02_PhucVu.Include(ptr => ptr.C02_LichSuDungBanAn).
+                FirstOrDefault(ptr =>
+                    ptr.IdMon == idMon &&
+                    ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn &&
+                    ptr.C02_LichSuDungBanAn.IsSuDung == true &&
+                    ptr.ThanhToan == false
+                );
 
-            if (checkExist.Count() > 0)
+            if (checkExist != null)
             {
-                checkExist.FirstOrDefault().SoLuong -= 1;
+                if (checkExist.SoLuong == 1)
+                {
+                    db.C02_PhucVu.Remove(checkExist);
+                }
+                else
+                {
+                    checkExist.SoLuong -= 1;
+                }
                 db.SaveChanges();
             }
 
@@ -122,7 +147,12 @@ namespace ResManager.Controllers
         [HttpPost]
         public string ThanhToan(int? idMon, int? idBanAn)
         {
-            var checkExist = db.C02_PhucVu.Where(ptr => ptr.IdMon == idMon && ptr.IdBan == idBanAn && ptr.ThanhToan == false);
+            var checkExist = db.C02_PhucVu.Where(ptr =>
+                ptr.IdMon == idMon &&
+                ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn &&
+                ptr.C02_LichSuDungBanAn.IsSuDung == true &&
+                ptr.ThanhToan == false
+            );
 
             if (checkExist.Count() > 0)
             {
@@ -131,7 +161,7 @@ namespace ResManager.Controllers
                 C02_HoaDon hoaDon = new C02_HoaDon()
                 {
                     ChoNo = 0,
-                    IdBan = idBanAn,
+                    IdLichSuBan = checkExist.FirstOrDefault().IdLichSuDungBanAn,
                     PhaiThu = PhaiThu,
                     ThucThu = PhaiThu
                 };
@@ -152,10 +182,47 @@ namespace ResManager.Controllers
             return JsonConvert.SerializeObject(lisMonDaGoi(idBanAn), Formatting.Indented);
         }
 
-        private List<MonDaGoi> lisMonDaGoi(int? idBanAn)
+        [HttpPost]
+        public string DanhSachMonDaThanhToan(int? idBanAn)
         {
+            C02_LichSuDungBanAn lichSuDungBanAn = db.C02_LichSuDungBanAn.Where(ptr => ptr.IsSuDung == true && ptr.IdBanAn == idBanAn).ToList().LastOrDefault();
+
+            if (lichSuDungBanAn == null)
+            {
+                return JsonConvert.SerializeObject(new List<MonDaGoi>(), Formatting.Indented);
+            }
+
             List<MonDaGoi> lisMonDaGoi = new List<MonDaGoi>();
-            lisMonDaGoi = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr => ptr.IdBan == idBanAn && ptr.ThanhToan == false).Select(ptr => new MonDaGoi()
+            lisMonDaGoi = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr =>
+                ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn &&
+                ptr.C02_LichSuDungBanAn.Id == lichSuDungBanAn.Id &&
+                ptr.ThanhToan == true
+            ).Select(ptr => new MonDaGoi()
+            {
+                IdMon = ptr.IdMon,
+                TenMon = ptr.C01_Mon.TenMon,
+                DonGia = ptr.DonGia.Value.ToString(),
+                DonVi = ptr.C01_Mon.DonVi,
+                SoLuong = ptr.SoLuong.Value.ToString()
+            }).ToList();
+            return JsonConvert.SerializeObject(lisMonDaThanhToan(idBanAn), Formatting.Indented);
+        }
+
+        private List<MonDaGoi> lisMonDaThanhToan(int? idBanAn)
+        {
+            C02_LichSuDungBanAn lichSuDungBanAn = db.C02_LichSuDungBanAn.Where(ptr => ptr.IsSuDung == true && ptr.IdBanAn == idBanAn).ToList().LastOrDefault();
+
+            if (lichSuDungBanAn == null)
+            {
+                return new List<MonDaGoi>();
+            }
+
+            List<MonDaGoi> lisMonDaGoi = new List<MonDaGoi>();
+            lisMonDaGoi = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr =>
+                ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn &&
+                ptr.C02_LichSuDungBanAn.Id == lichSuDungBanAn.Id &&
+                ptr.ThanhToan == true
+            ).Select(ptr => new MonDaGoi()
             {
                 IdMon = ptr.IdMon,
                 TenMon = ptr.C01_Mon.TenMon,
@@ -166,6 +233,23 @@ namespace ResManager.Controllers
             return lisMonDaGoi;
         }
 
+        private List<MonDaGoi> lisMonDaGoi(int? idBanAn)
+        {
+            List<MonDaGoi> lisMonDaGoi = new List<MonDaGoi>();
+            lisMonDaGoi = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr =>
+                ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn &&
+                ptr.C02_LichSuDungBanAn.IsSuDung == true &&
+                ptr.ThanhToan == false).Select(ptr => new MonDaGoi()
+                {
+                    IdMon = ptr.IdMon,
+                    TenMon = ptr.C01_Mon.TenMon,
+                    DonGia = ptr.DonGia.Value.ToString(),
+                    DonVi = ptr.C01_Mon.DonVi,
+                    SoLuong = ptr.SoLuong.Value.ToString()
+                }).ToList();
+            return lisMonDaGoi;
+        }
+
         public void SuDungBan(int? idBanAn)
         {
             var checkTable = db.C00_BanAn.FirstOrDefault(ptr => ptr.Id == idBanAn);
@@ -173,6 +257,13 @@ namespace ResManager.Controllers
             if (checkTable.IdTrangThai == 4 || checkTable.IdTrangThai == 5 || checkTable.IdTrangThai == 1)
             {
                 checkTable.IdTrangThai = 2;
+                C02_LichSuDungBanAn c02_LichSuDungBanAn = new C02_LichSuDungBanAn()
+                {
+                    IdBanAn = idBanAn,
+                    IsSuDung = true,
+                    NgayTao = DateTime.Now
+                };
+                db.C02_LichSuDungBanAn.Add(c02_LichSuDungBanAn);
                 db.SaveChanges();
             }
         }
@@ -184,13 +275,36 @@ namespace ResManager.Controllers
             if (checkTable.IdTrangThai == 4)
             {
                 checkTable.IdTrangThai = 5;
+                C02_LichSuDungBanAn c02_LichSuDungBanAn = new C02_LichSuDungBanAn()
+                {
+                    IdBanAn = idBanAn,
+                    IsSuDung = true,
+                    NgayTao = DateTime.Now
+                };
+                db.C02_LichSuDungBanAn.Add(c02_LichSuDungBanAn);
                 db.SaveChanges();
             }
         }
 
-        public ActionResult HuyBan(int? id)
+        public void HuyBan(int? idBanAn)
         {
-            return View();
+            var checkCancel = db.C02_PhucVu.Where(ptr => ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn && ptr.C02_LichSuDungBanAn.IsSuDung == true && ptr.ThanhToan == false).ToList();
+
+            if (checkCancel.Count() > 0)
+            {
+                db.C02_PhucVu.RemoveRange(checkCancel);
+            }
+
+            db.C02_LichSuDungBanAn.Where(ptr => ptr.IdBanAn == idBanAn).ForEach(ptr => ptr.IsSuDung = false);
+            var checkTable = db.C00_BanAn.FirstOrDefault(ptr => ptr.Id == idBanAn);
+            checkTable.IdTrangThai = 4;
+            db.SaveChanges();
+        }
+
+        public ActionResult HuyBanA(int? id)
+        {
+            HuyBan(id);
+            return RedirectToAction("index");
         }
     }
 }

@@ -1,0 +1,59 @@
+﻿@model ResManager.DAO.Databases.C02_Voucher
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>C02_Voucher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaGiamGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaGiamGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayHieuLuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayHieuLuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayHetHan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayHetHan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongKichHoat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongKichHoat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongToiDa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongToiDa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
