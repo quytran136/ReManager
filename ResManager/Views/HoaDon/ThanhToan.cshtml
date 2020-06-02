@@ -120,7 +120,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    PhaiThu
+                                    Phải thu
                                 </th>
                                 <th id="PhaiThu" colspan="3" class="text-right">
                                     @Model.TongThucThu
@@ -146,12 +146,14 @@
 @section dataSection
 {
     <script>
-    function ThanhToan() {
+        function ThanhToan() {
+            var VoucherCode = $('#VoucherCode').val();
             $.ajax({
                 url: '@Url.Action("LapHoaDon", "HoaDon", null, Request.Url.Scheme)',
                 type: "POST",
                 data: JSON.stringify({
                     "idBanAn": @Model.BanAn.Id,
+                    "VoucherCode": VoucherCode
                 }),
                 success: function (data) {
                 },
@@ -181,13 +183,19 @@
                      if (data['code'] == 0) {
                          $('#KhauTru').html("");
                          $('#PhaiThu').html("");
-                         $('#KhauTru').append(data['record']['TrietKhau']);
-                         $('#PhaiThu').append(data['record']['TongThucThu']);
+                         $('#KhauTru').append(formatter.format(data['record']['TrietKhau']));
+                         $('#PhaiThu').append(formatter.format(data['record']['TongThucThu']));
                      }
                 },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
             });
         }
+
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 2
+        })
     </script>
 }

@@ -39,19 +39,22 @@ namespace ResManager.Controllers
             return View(new List<C00_BanAn>());
         }
 
-        public ActionResult SuDung(int? id)
+        public ActionResult SuDung(int? idBanAn)
         {
-            var BanAn = db.C00_BanAn.FirstOrDefault(ptr => ptr.Id == id);
+            var BanAn = db.C00_BanAn.FirstOrDefault(ptr => ptr.Id == idBanAn);
             if (BanAn.IdTrangThai == 1)
             {
                 BanAn.IdTrangThai = 4;
                 db.SaveChanges();
             }
+
+
+
             DatBanViewModel datBanViewModel = new DatBanViewModel()
             {
                 idTrangThai = BanAn.IdTrangThai,
-                idBanAn = id,
-                lisMonSuDung = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr => ptr.C02_LichSuDungBanAn.IdBanAn == id && ptr.C02_LichSuDungBanAn.IsSuDung == true).Select(ptr => new MonDaGoi()
+                idBanAn = idBanAn,
+                lisMonSuDung = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr => ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn && ptr.C02_LichSuDungBanAn.IsSuDung == true).Select(ptr => new MonDaGoi()
                 {
                     TenMon = ptr.C01_Mon.TenMon,
                     DonGia = ptr.DonGia.ToString(),
@@ -161,9 +164,11 @@ namespace ResManager.Controllers
                 C02_HoaDon hoaDon = new C02_HoaDon()
                 {
                     ChoNo = 0,
+                    MaHoaDon = DateTime.Now.ToString("yyMMddhhmmss"),
                     IdLichSuBan = checkExist.FirstOrDefault().IdLichSuDungBanAn,
                     PhaiThu = PhaiThu,
-                    ThucThu = PhaiThu
+                    ThucThu = PhaiThu,
+                    TrietKhau = 0
                 };
                 db.C02_HoaDon.Add(hoaDon);
 
@@ -185,26 +190,6 @@ namespace ResManager.Controllers
         [HttpPost]
         public string DanhSachMonDaThanhToan(int? idBanAn)
         {
-            C02_LichSuDungBanAn lichSuDungBanAn = db.C02_LichSuDungBanAn.Where(ptr => ptr.IsSuDung == true && ptr.IdBanAn == idBanAn).ToList().LastOrDefault();
-
-            if (lichSuDungBanAn == null)
-            {
-                return JsonConvert.SerializeObject(new List<MonDaGoi>(), Formatting.Indented);
-            }
-
-            List<MonDaGoi> lisMonDaGoi = new List<MonDaGoi>();
-            lisMonDaGoi = db.C02_PhucVu.Include(ptr => ptr.C01_Mon).Where(ptr =>
-                ptr.C02_LichSuDungBanAn.IdBanAn == idBanAn &&
-                ptr.C02_LichSuDungBanAn.Id == lichSuDungBanAn.Id &&
-                ptr.ThanhToan == true
-            ).Select(ptr => new MonDaGoi()
-            {
-                IdMon = ptr.IdMon,
-                TenMon = ptr.C01_Mon.TenMon,
-                DonGia = ptr.DonGia.Value.ToString(),
-                DonVi = ptr.C01_Mon.DonVi,
-                SoLuong = ptr.SoLuong.Value.ToString()
-            }).ToList();
             return JsonConvert.SerializeObject(lisMonDaThanhToan(idBanAn), Formatting.Indented);
         }
 
@@ -254,7 +239,13 @@ namespace ResManager.Controllers
         {
             var checkTable = db.C00_BanAn.FirstOrDefault(ptr => ptr.Id == idBanAn);
 
-            if (checkTable.IdTrangThai == 4 || checkTable.IdTrangThai == 5 || checkTable.IdTrangThai == 1)
+            if (checkTable.IdTrangThai == 5)
+            {
+                checkTable.IdTrangThai = 2;
+                db.SaveChanges();
+            }
+
+            if (checkTable.IdTrangThai == 4 || checkTable.IdTrangThai == 1)
             {
                 checkTable.IdTrangThai = 2;
                 C02_LichSuDungBanAn c02_LichSuDungBanAn = new C02_LichSuDungBanAn()
@@ -266,15 +257,20 @@ namespace ResManager.Controllers
                 db.C02_LichSuDungBanAn.Add(c02_LichSuDungBanAn);
                 db.SaveChanges();
             }
+
         }
 
         public void DatTruoc(int? idBanAn)
         {
-            var checkTable = db.C00_BanAn.FirstOrDefault(ptr => ptr.Id == idBanAn);
-
-            if (checkTable.IdTrangThai == 4)
+            var checkTable = db.C00_BanAn.Where(ptr => ptr.Id == idBanAn);
+            if (checkTable == null)
             {
-                checkTable.IdTrangThai = 5;
+                return;
+            }
+
+            if (checkTable.FirstOrDefault().IdTrangThai == 4)
+            {
+                checkTable.FirstOrDefault().IdTrangThai = 5;
                 C02_LichSuDungBanAn c02_LichSuDungBanAn = new C02_LichSuDungBanAn()
                 {
                     IdBanAn = idBanAn,
@@ -284,6 +280,7 @@ namespace ResManager.Controllers
                 db.C02_LichSuDungBanAn.Add(c02_LichSuDungBanAn);
                 db.SaveChanges();
             }
+
         }
 
         public void HuyBan(int? idBanAn)
@@ -301,9 +298,9 @@ namespace ResManager.Controllers
             db.SaveChanges();
         }
 
-        public ActionResult HuyBanA(int? id)
+        public ActionResult HuyBanA(int? idBanAn)
         {
-            HuyBan(id);
+            HuyBan(idBanAn);
             return RedirectToAction("index");
         }
     }

@@ -20,8 +20,22 @@ namespace ResManager.Controllers
         }
 
         [HttpPost]
-        public string LapHoaDon(int? idBanAn)
+        public string LapHoaDon(int? idBanAn, string VoucherCode)
         {
+            C02_Voucher checkVoucher = new C02_Voucher();
+            if (!string.IsNullOrEmpty(VoucherCode))
+            {
+                checkVoucher = db.C02_Voucher.FirstOrDefault(ptr => ptr.MaGiamGia == VoucherCode);
+                if (checkVoucher == null)
+                {
+                    return JsonConvert.SerializeObject("", Formatting.Indented);
+                }
+                if (checkVoucher.NgayHieuLuc >= DateTime.Now || DateTime.Now >= checkVoucher.NgayHetHan)
+                {
+                    return JsonConvert.SerializeObject("", Formatting.Indented);
+                }
+            }
+
             HoaDonViewModel hoaDonViewModel = XuatHoaDon(idBanAn);
 
             var checkExist = db.C02_LichSuDungBanAn.FirstOrDefault(ptr => ptr.IdBanAn == idBanAn && ptr.IsSuDung == true);
@@ -34,10 +48,12 @@ namespace ResManager.Controllers
                     C02_HoaDon c02_HoaDon = new C02_HoaDon()
                     {
                         IdLichSuBan = checkExist.Id,
-                        MaHoaDon = DateTime.Now.ToString("ddMMyy"),
+                        MaHoaDon = DateTime.Now.ToString("yyMMddhhmmss"),
                         PhaiThu = hoaDonViewModel.TongPhaiThu,
-                        ThucThu = hoaDonViewModel.TongPhaiThu,
-                        ChoNo = hoaDonViewModel.TongDuNo
+                        ThucThu = hoaDonViewModel.TongPhaiThu - checkVoucher.KhauTru - (checkVoucher.PhanTramKhauTru / 100 * hoaDonViewModel.TongPhaiThu),
+                        ChoNo = hoaDonViewModel.TongDuNo,
+                        MaVoucher = checkVoucher.Id,
+                        TrietKhau = checkVoucher.KhauTru + (checkVoucher.PhanTramKhauTru / 100 * hoaDonViewModel.TongPhaiThu)
                     };
                     db.C02_HoaDon.Add(c02_HoaDon);
 
@@ -61,6 +77,8 @@ namespace ResManager.Controllers
                     }
 
                     db.C02_ChiTietHoaDon.AddRange(chiTietHoaDon);
+
+                    checkVoucher.SoLuongKichHoat += 1;
 
                     var banAn = db.C00_BanAn.First(ptr => ptr.Id == idBanAn);
                     banAn.IdTrangThai = 4;
@@ -128,20 +146,28 @@ namespace ResManager.Controllers
             {
                 return JsonConvert.SerializeObject(new { code = 1, message = "Voucher không đúng!", record = new HoaDonViewModel() }, Formatting.Indented);
             }
-            return JsonConvert.SerializeObject(new
+            if (checkVoucher.NgayHieuLuc <= DateTime.Now && DateTime.Now <= checkVoucher.NgayHetHan)
             {
-                code = 0,
-                message = "",
-                record = new HoaDonViewModel()
+                return JsonConvert.SerializeObject(new
                 {
-                    TongDuNo = hoaDonViewModel.TongDuNo,
-                    TongPhaiThu = hoaDonViewModel.TongPhaiThu,
-                    TongThucThu = hoaDonViewModel.TongThucThu - checkVoucher.KhauTru - (checkVoucher.PhanTramKhauTru.Value / 100 * hoaDonViewModel.TongPhaiThu),
-                    TrietKhau = checkVoucher.KhauTru + (checkVoucher.PhanTramKhauTru.Value/100 * hoaDonViewModel.TongPhaiThu),
-                    MaVoucher = VoucherCode,
-                    NgayTao = DateTime.Now.ToString("dd/MM/yyyy"),
-                }
-            }, Formatting.Indented);
+                    code = 0,
+                    message = "",
+                    record = new HoaDonViewModel()
+                    {
+                        TongDuNo = hoaDonViewModel.TongDuNo,
+                        TongPhaiThu = hoaDonViewModel.TongPhaiThu,
+                        TongThucThu = hoaDonViewModel.TongPhaiThu - checkVoucher.KhauTru - (checkVoucher.PhanTramKhauTru.Value / 100 * hoaDonViewModel.TongPhaiThu),
+                        TrietKhau = checkVoucher.KhauTru + (checkVoucher.PhanTramKhauTru.Value / 100 * hoaDonViewModel.TongPhaiThu),
+                        MaVoucher = VoucherCode,
+                        NgayTao = DateTime.Now.ToString("dd/MM/yyyy"),
+                    }
+                }, Formatting.Indented);
+            }
+            if (checkVoucher.SoLuongToiDa == checkVoucher.SoLuongKichHoat)
+            {
+                return JsonConvert.SerializeObject(new { code = 1, message = "Hết voucher!", record = new HoaDonViewModel() }, Formatting.Indented);
+            }
+            return JsonConvert.SerializeObject(new { code = 1, message = "Hết hạn sử dụng!", record = new HoaDonViewModel() }, Formatting.Indented);
         }
     }
 }

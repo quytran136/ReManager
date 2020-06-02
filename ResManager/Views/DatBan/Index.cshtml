@@ -54,14 +54,14 @@
                     @{
                         if (item.IdTrangThai == 1 || item.IdTrangThai == 3 || item.IdTrangThai == 5 || item.IdTrangThai == 4)
                         {
-                            @Html.ActionLink("Sủ dụng / Đặt trước", "SuDung", new { id = item.Id }, new { Class = "btn btn-primary btn-flat" })
+                            @Html.ActionLink("Sủ dụng / Đặt trước", "SuDung", new { idBanAn = item.Id }, new { Class = "btn btn-primary btn-flat" })
                         }
 
                         if (item.IdTrangThai == 2)
                         {
-                            @Html.ActionLink("Sử dụng", "SuDung", new { id = item.Id }, new { Class = "btn btn-info btn-flat" })
-                            @Html.ActionLink("Thanh toán", "ThanhToan", "HoaDon", new { id = item.Id }, new { Class = "btn btn-success btn-flat" })
-                            @Html.ActionLink("Hủy bàn", "HuyBanA", new { id = item.Id }, new { Class = "btn btn-danger btn-flat" })
+                            @Html.ActionLink("Sử dụng", "SuDung", new { idBanAn = item.Id }, new { Class = "btn btn-info btn-flat" })
+                            @Html.ActionLink("Thanh toán", "ThanhToan", "HoaDon", new { idBanAn = item.Id }, new { Class = "btn btn-success btn-flat" })
+                            @Html.ActionLink("Hủy bàn", "HuyBanA", new { idBanAn = item.Id }, new { Class = "btn btn-danger btn-flat" })
                         }
                     }
 
